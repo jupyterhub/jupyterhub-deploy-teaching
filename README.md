@@ -58,9 +58,8 @@ End users of the deployment should be able to:
 2. Set the hostname
 3. Install the SSL certificates into the security directory.
 4. Generate a JupyterHub cookie secret using `openssl rand -hex 1024` and save it into
-   `security/cooke_secret`.
-5. Set the list of usernames.
-6. Create a GitHub app and copy.
+   `security/cookie_secret`.
+5. Edit `customize.yml` for your deployment.
 
 Optionally
 
