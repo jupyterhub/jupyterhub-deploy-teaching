@@ -1,0 +1,25 @@
+---
+
+- fail: msg="No ssh key path defined"
+  when: ssl_key_path is undefined or ssl_key_path == ''
+
+- fail: msg="No ssl cert path defined"
+  when: ssl_cert_path is undefined or ssl_cert_path == ''
+
+- name: install SSL key
+  copy: src='../../../security/ssl.key' dest={{ssl_key_path}} owner=root group=root mode=0600
+  become: true
+
+- name: install SSL certificate
+  copy: src='../../../security/ssl.crt' dest={{ssl_cert_path}} owner=root group=root mode=0600
+  become: true
+
+- name: find notebook static directory
+  command: python3 -c 'import notebook; import os; print(os.path.join(notebook.__path__[0], "static"));'
+  register: notebook_static_directory
+
+- name: install nginx.conf
+  template: src=nginx.conf.j2 dest=/etc/nginx/nginx.conf owner=root group=root mode=0644 backup=yes
+  become: true
+  notify:
+    - reload nginx

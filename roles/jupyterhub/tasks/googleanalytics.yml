@@ -1,0 +1,7 @@
+---
+
+- name: install single user page.html file for Google Analytics
+  template: src=page.html.j2 dest={{jupyter_templates_dir}}/page.html owner=root group=root mode=0644
+  become: true
+  when: ga_tracking_id is defined and ga_tracking_id != ''
+

@@ -1,0 +1,8 @@
+---
+
+- name: install system nginx
+  apt: pkg=nginx-full
+  become: true
+
+- name: start the nginx service
+  service: name=nginx state=started enabled=yes

@@ -1,0 +1,33 @@
+---
+    
+
+- name: add repo key
+  apt_key:
+    url: https://download.newrelic.com/548C16BF.gpg
+    id: 548C16BF
+    state: present
+  become: yes
+
+- name: add repo
+  apt_repository:
+    repo: 'deb http://apt.newrelic.com/debian/ newrelic non-free'
+    state: present
+  become: yes
+
+- name: install
+  apt: pkg=newrelic-sysmond state=present update_cache=yes cache_valid_time=3600
+  become: yes
+
+- name: set license
+  shell: nrsysmond-config --set license_key={{newrelic_license_key}}
+  become: yes
+
+- name: stop if already running
+  shell: /etc/init.d/newrelic-sysmond stop
+  become: yes
+  ignore_errors: yes
+
+- name: start
+  shell: /etc/init.d/newrelic-sysmond start
+  become: yes
+

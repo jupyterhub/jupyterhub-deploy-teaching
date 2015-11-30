@@ -1,0 +1,34 @@
+---
+
+# These are global variables that are used across roles.
+# You shouldn't have to change these, to customize this deployment
+# see the customize.yml file at the top-level.
+
+# ---------------------------------------------------
+# JupyterHub config
+# ---------------------------------------------------
+
+jupyterhub_srv_dir: /srv/jupyterhub
+jupyterhub_config_dir: /etc/jupyterhub
+jupyterhub_log_dir: /var/log/jupyterhub
+
+# ---------------------------------------------------
+# Jupyter config
+# ---------------------------------------------------
+
+jupyter_config_dir: /etc/jupyter
+jupyter_share_dir: /usr/local/share/jupyter
+jupyter_templates_dir: "{{jupyter_config_dir}}/templates"
+
+# ---------------------------------------------------
+# IPython config
+# ---------------------------------------------------
+
+ipython_config_dir: /etc/ipython
+
+# ---------------------------------------------------
+# Nginx
+# ---------------------------------------------------
+
+ssl_key_path: "{{jupyterhub_srv_dir}}/ssl.key"
+ssl_cert_path: "{{jupyterhub_srv_dir}}/ssl.crt"

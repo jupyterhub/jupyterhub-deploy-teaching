@@ -1,0 +1,10 @@
+---
+
+- name: install jupyterhub config file
+  template: src=jupyterhub_config.py.j2 dest={{jupyterhub_config_dir}}/jupyterhub_config.py owner=root group=root mode=0644
+  become: true
+
+- name: install jupyterhub cookie secret
+  copy: src="../../../security/cookie_secret" dest={{jupyterhub_srv_dir}}/cookie_secret owner=root group=root mode=0600
+  become: true
+

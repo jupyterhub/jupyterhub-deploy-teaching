@@ -1,0 +1,12 @@
+---
+
+- name: npm install configurable-http-proxy
+  npm: name=jupyter/configurable-http-proxy global=yes state=latest
+  become: true
+
+- name: pip install 
+  pip: name={{item}} state=latest executable=pip3 editable=false
+  become: true
+  with_items:
+    - git+https://github.com/jupyter/jupyterhub#egg=jupyterhub
+    - git+https://github.com/jupyter/oauthenticator#egg=oauthenticator

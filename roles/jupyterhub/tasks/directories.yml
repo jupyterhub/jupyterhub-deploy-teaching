@@ -1,0 +1,43 @@
+---
+
+- name: make sure /etc/jupyterhub exists
+  file: path={{jupyterhub_config_dir}}/ state={{item}} owner=root group=root mode=0755
+  become: true
+  with_items:
+    - directory
+    - touch
+
+- name: make sure /srv/jupyterhub exists
+  file: path={{jupyterhub_srv_dir}}/ state={{item}} owner=root group=root mode=0700
+  become: true
+  with_items:
+    - directory
+    - touch
+
+- name: make sure /var/log/jupyterhub exists
+  file: path={{jupyterhub_log_dir}}/ state={{item}} owner=root group=root mode=0755
+  become: true
+  with_items:
+    - directory
+    - touch
+
+- name: make sure /etc/jupyter/templates exists
+  file: path={{jupyter_templates_dir}}/ state={{item}} owner=root group=root mode=0755
+  become: true
+  with_items:
+    - directory
+    - touch
+
+- name: make sure /etc/jupyter exists
+  file: path={{jupyter_config_dir}} state={{item}} owner=root group=root mode=0755
+  become: true
+  with_items:
+    - directory
+    - touch
+
+- name: make sure /etc/ipython exists
+  file: path={{ipython_config_dir}} state={{item}} owner=root group=root mode=0755
+  become: true
+  with_items:
+    - directory
+    - touch

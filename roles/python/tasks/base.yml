@@ -1,0 +1,13 @@
+---
+
+- name: install non-python dependencies
+  apt: pkg={{item}} state=present update_cache=yes cache_valid_time=3600
+  become: true
+  with_items:
+    - libzmq3-dev
+    - sqlite3
+    - libsqlite3-dev
+    - pandoc
+    - libcurl4-openssl-dev
+    - python-software-properties
+

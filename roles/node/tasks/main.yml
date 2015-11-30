@@ -1,0 +1,17 @@
+---
+
+- name: install node and npm
+  apt: pkg={{item}} state=present update_cache=yes cache_valid_time=3600
+  become: true
+  with_items:
+    - nodejs
+    - nodejs-legacy
+    - npm
+
+- name: install bower and less
+  npm: name={{item}} global=yes
+  become: true
+  with_items:
+    - bower
+    - less
+

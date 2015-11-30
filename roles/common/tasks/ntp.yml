@@ -1,0 +1,7 @@
+---
+
+- name: install ntp
+  apt: pkg=ntp state=present
+  become: true
+  notify:
+    - restart ntp

@@ -1,0 +1,33 @@
+---
+
+- name: pip install ipython/jupyter deps
+  pip: name={{item}} state=latest executable=pip3
+  become: true
+  with_items:
+    - pexpect
+    - nose
+    - pygments
+    - Sphinx
+    - numpydoc
+    - requests
+    - jsonpointer
+    - jsonschema
+    - mistune
+    - terminado
+    - tornado
+    - readline
+    - jinja2
+    - pyzmq
+
+- name: pip install jupyter
+  pip: name={{item}} state=latest executable=pip3 editable=false
+  become: true
+  with_items:
+      - jupyter
+      - ipywidgets
+      - ipyparallel
+
+- name: install python3 kernelspec
+  command: python3 -m IPython kernelspec install-self
+  become: true
+  ignore_errors: yes

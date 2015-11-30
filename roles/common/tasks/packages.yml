@@ -1,0 +1,21 @@
+---
+
+- name: build-essential
+  apt: pkg=build-essential state=present update_cache=yes cache_valid_time=3600
+  become: true
+
+- name: other developer tools
+  apt: pkg={{item}} state=present
+  become: true
+  with_items:
+    - gfortran
+    - git
+
+- name: install user applications
+  apt: pkg={{item}} state=present
+  become: true
+  with_items:
+    - vim
+    - emacs
+    - tree
+    - htop 
