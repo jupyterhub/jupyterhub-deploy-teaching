@@ -3,3 +3,7 @@
 - name: restart ntp
   service: name=ntp state=restarted
   become: true
+  
+- name: restart sshd
+  service: name=ssh state=restarted
+  become: true

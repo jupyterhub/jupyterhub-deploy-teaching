@@ -25,7 +25,7 @@ c.Authenticator.jupyterhub_admins = {
 c.Authenticator.jupyterhub_admins = set()
 {% endif %}
 
-{% if users|length %}
+{% if jupyterhub_users|length %}
 c.Authenticator.whitelist = {
 {%- for user in jupyterhub_users[:-1] -%}
 '{{user}}',

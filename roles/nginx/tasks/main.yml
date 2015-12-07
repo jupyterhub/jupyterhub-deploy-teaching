@@ -4,5 +4,66 @@
   apt: pkg=nginx-full
   become: true
 
+# ---------------------------------------------------
+# Install SSL cert/key using letsencrypt
+# ---------------------------------------------------
+
+- fail: msg="you must provide an email for usage with letsencrypt"
+  when: use_letsencrypt and (letsencrypt_email == '' or letsencrypt_email is undefined)
+
+- name: stop the nginx service
+  service: name=nginx state=stopped enabled=yes
+  become: true
+  when: use_letsencrypt
+
+- name: clone or update the latest letsencrypt repo
+  git: repo=https://github.com/letsencrypt/letsencrypt.git dest=/tmp/letsencrypt
+  become: true
+  when: use_letsencrypt
+
+- name: run letsencrypt to generate SSL certs
+  command: ./letsencrypt-auto certonly --agree-tos -m {{letsencrypt_email}} -d {{ansible_fqdn}}
+  args:
+    chdir: /tmp/letsencrypt
+    creates: /etc/letsencrypt/live/{{ansible_fqdn}}/
+  become: true
+  when: use_letsencrypt
+
+# ---------------------------------------------------
+# Or, install existing SSL cert/key
+# ---------------------------------------------------
+
+- name: make sure /etc/nginx/ssl exists
+  file: path={{ssl_path}}/ state={{item}} owner=root group=root mode=0700
+  become: true
+  with_items:
+    - directory
+    - touch
+
+- name: install SSL key
+  copy: src='../../../security/ssl.key' dest={{ssl_key_path}} owner=root group=root mode=0600
+  become: true
+  when: not use_letsencrypt
+
+- name: install SSL certificate
+  copy: src='../../../security/ssl.crt' dest={{ssl_cert_path}} owner=root group=root mode=0600
+  become: true
+  when: not use_letsencrypt
+
+# ---------------------------------------------------
+# Configure and launch nginx
+# ---------------------------------------------------
+
 - name: start the nginx service
   service: name=nginx state=started enabled=yes
+  become: true
+
+- name: find notebook static directory
+  command: python3 -c 'import notebook; import os; print(os.path.join(notebook.__path__[0], "static"));'
+  register: notebook_static_directory
+
+- name: install nginx.conf
+  template: src=nginx.conf.j2 dest=/etc/nginx/nginx.conf owner=root group=root mode=0644 backup=yes
+  become: true
+  notify:
+    - reload nginx

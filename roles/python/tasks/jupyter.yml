@@ -15,7 +15,6 @@
     - mistune
     - terminado
     - tornado
-    - readline
     - jinja2
     - pyzmq
 

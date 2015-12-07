@@ -1,0 +1,11 @@
+---
+
+- name: pip install bash_kernel package
+  pip: name={{item}} state=latest executable=pip3 editable=false
+  become: true
+  with_items:
+      - bash_kernel
+
+- name: install bash_kernel
+  command: python3 -m bash_kernel.install
+  become: true

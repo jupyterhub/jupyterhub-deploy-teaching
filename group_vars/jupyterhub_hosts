@@ -30,5 +30,11 @@ ipython_config_dir: /etc/ipython
 # Nginx
 # ---------------------------------------------------
 
-ssl_key_path: "{{jupyterhub_srv_dir}}/ssl.key"
-ssl_cert_path: "{{jupyterhub_srv_dir}}/ssl.crt"
+# For externally provided SSL cert
+ssl_path: "/etc/nginx/ssl"
+ssl_key_path: "{{ssl_path}}/ssl.key"
+ssl_cert_path: "{{ssl_path}}/ssl.crt"
+
+# If letsencrypt is used to get SSL cert
+letsencrypt_ssl_key_path: "/etc/letsencrypt/live/{{ansible_fqdn}}/privkey.pem"
+letsencrypt_ssl_cert_path: "/etc/letsencrypt/live/{{ansible_fqdn}}/fullchain.pem"

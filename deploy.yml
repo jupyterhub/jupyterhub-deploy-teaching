@@ -4,14 +4,14 @@
   vars_files:
     - 'customize.yml'
   roles:
-    - common
-    - python
-    - node
-    - { role: newrelic, when: newrelic_license_key is defined and newrelic_license_key != ''}
-    - newrelic
+    # - common
+    # - python
+    # - node
+    # - { role: newrelic, when: newrelic_license_key is defined and newrelic_license_key != ''}
+    # - newrelic
     - nginx
     - supervisor
     - jupyterhub
     # - nbgrader
     # - R
-    # - bash
+    - bash

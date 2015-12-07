@@ -2,3 +2,4 @@
   
 - include: ntp.yml
 - include: packages.yml
+- include: ssh.yml

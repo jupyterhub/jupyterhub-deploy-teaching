@@ -1,0 +1,19 @@
+---
+
+# - name: sshd configuration
+#   copy: src=sshd_config dest=/etc/ssh/sshd_config mode=0644
+#   notify:
+#   - restart sshd
+
+- name: directory to hold public keys
+  file: state=directory path=/tmp/pubkeys mode=0755
+
+- name: fetch public keys from github
+  get_url: dest=/tmp/pubkeys/{{ item }}-pubkeys url=https://github.com/{{ item }}.keys force=yes
+  with_items: github_usernames
+  when: github_usernames is defined and github_usernames != []
+
+- name: assemble the authorized keys file
+  assemble: dest=/root/.ssh/authorized_keys mode=0600 src=/tmp/pubkeys
+  become: true
+  when: github_usernames is defined and github_usernames != []

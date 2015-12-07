@@ -30,9 +30,13 @@ http {
 
 
         ssl on;
+{% if use_letsencrypt %}		
+        ssl_certificate {{ letsencrypt_ssl_cert_path }};
+        ssl_certificate_key {{ letsencrypt_ssl_key_path }};
+{% else %}
         ssl_certificate {{ ssl_cert_path }};
         ssl_certificate_key {{ ssl_key_path }};
-        
+{% endif %}
         ssl_ciphers "AES128+EECDH:AES128+EDH";
         ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
         ssl_prefer_server_ciphers on;
