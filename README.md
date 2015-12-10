@@ -14,59 +14,75 @@ Individuals using this repo to deploy JupyterHub should be able to:
   - A formatted and mounted directory to use for datasets.
   - The assumption that all users of the system will be "trusted," meaning that
     you would given them a user-level shell account on the server.
-* Always have TLS enabled.
-* Have idle notebook servers culled on some time interval.
-* Limit the RAM usage of individual notebook servers.
+* Always have SSL/TLS enabled.
 * Monitor the state of the server and set email alerts.
 * Specify admin users of JupyterHub.
 * Configure nbgrader:
   - The course id.
   - The location of the nbgrader config.
 * Have all user directories automatically created.
-* Ensure that jupyterhub and nbgrader are always running.
-* Start, stop and restart jupyterhub and nbgrader by logging on to the server?
-* Run this deployment for a single course (in the nbgrader sense).
+* Manage the running of jupyterhub and nbgrader using supervisor.
+* Add the public SSH keys of GitHub users who need to be able to SSH to the server
+  as `root`.
 * Have a deployment that is as simple as possible:
   - No Docker for now.
-  - Nginx as a frontend proxy and termination point for TLS.
+  - Nginx as a frontend proxy and termination point for SSL/TLS.
   - On a single server.
   - Ansible for config.
-* Launch the server in a single command.
+  - Optionally use https://letsencrypt.org/ for generating SSL certificates.
 
 Admin users of the deployment should be able to:
 
-* Access the JupyterHub control panel and all of its functionality, including
+* Access the JupyterHub admin panel and all of its functionality, including
   starting and stopping user notebook severs and adding users by GitHub usernames.
-* [?] Install additional apt and Python packages and language kernels.
-* [?] Access the global data directory with rwx permissions.
 
 End users of the deployment should be able to:
 
-* Use the Python 3 IPython kernel and main Python libraries for data science.
+* Use the following Jupyter kernels:
+  - Python 3 IPython kernel with the main Python libraries for data science.
+  - Bash (https://github.com/takluyver/bash_kernel).
 * Sign in using their GitHub username and password.
 * Have a persistent home directory.
-* Access the global data directory with r permissions.
 * Have outbound network access.
 
 # Instructions
 
-1. Before deploying:
-  - Server must be up and running latest Ubuntu.
-  - Hostname should match the fully qualified domain name (FQDN).
-  - There should be a valid DNS entry for the server.
-  - You should have a trust SSL certificate and key for the server at that FQDN.
-2. Set the hostname
-3. Install the SSL certificates into the security directory.
-4. Generate a JupyterHub cookie secret using `openssl rand -hex 1024` and save it into
-   `security/cookie_secret`.
-5. Edit `customize.yml` for your deployment.
+1. Before deploying, for each host:
+  - Start the server running latest Ubuntu.
+  - Enable passwordless SSH access as `root`.
+  - Partition and format any local disks you want to mount.
+  - Make sure the servers hostname matches the fully qualified domain name (FQDN).
+  - Make sure there is a valid DNS entry for the server.
+  - If you not going to use letsencrypt, obtain a trusted SSL certificate and
+    key for the server at that FQDN.
+2. Edit the `./hosts` file to lists the FQDN's of the hosts in the jupyterhub_hosts
+   group.
+2. For each host, create a file in `./host_vars` with the name of the host, starting
+   from `./host_vars/hostname.example`.
+3. Create a `./security/cookie_secret` file by doing:
 
-Optionally
+	openssl rand -hex 1024 > ./security/cookie_secret
 
-1. Create a NewRelic account and get your license key.
-2. Create a Google Analytics account and get your account number.
- 
-  
-  
-  
+4. If you are not using letsencrypt, install your SSL private key and certificate as
+   `./security/ssl.crt` and `./security/ssl.key`.
+5. Run `ansible-playbook` for the main deployment:
 
+	ansible-playbook deploy.yml
+
+6. After you have setup user accounts, run the formgrade deployment:
+
+	ansible-playbook deploy_formgrade.yml
+
+To limit the deployment to certain hosts, add the `-l hostname` to these commands:
+
+	ansible-playbook -l hostname deploy.yml
+
+# Notes
+
+* The logs for `jupyterhub` are in `/var/log/jupyterhub`.
+* The logs for `nbgrader` are in `/var/log/nbgrader`.
+* If you are not using GitHub OAuth, you will need to manually create users using
+  `useradd` or `adduser`.
+* To manage the running status of `jupyterhub` and `nbgrader`, you will need to SSH
+  to the server, and use `supervisorctl` to start those services.
+* You can edit the ansible configuration by editing `./ansible_cfg`.
