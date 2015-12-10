@@ -1,10 +1,5 @@
 ---
 
-# - name: sshd configuration
-#   copy: src=sshd_config dest=/etc/ssh/sshd_config mode=0644
-#   notify:
-#   - restart sshd
-
 - name: directory to hold public keys
   file: state=directory path=/tmp/pubkeys mode=0755
 

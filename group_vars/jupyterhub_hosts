@@ -4,6 +4,8 @@
 # You shouldn't have to change these, to customize this deployment
 # see the customize.yml file at the top-level.
 
+default_shell: /bin/bash
+
 # ---------------------------------------------------
 # JupyterHub config
 # ---------------------------------------------------
@@ -38,3 +40,10 @@ ssl_cert_path: "{{ssl_path}}/ssl.crt"
 # If letsencrypt is used to get SSL cert
 letsencrypt_ssl_key_path: "/etc/letsencrypt/live/{{ansible_fqdn}}/privkey.pem"
 letsencrypt_ssl_cert_path: "/etc/letsencrypt/live/{{ansible_fqdn}}/fullchain.pem"
+
+# ---------------------------------------------------
+# Nbgrader config
+# ---------------------------------------------------
+
+nbgrader_log_dir: /var/log/nbgrader
+nbgrader_exchange_dir: /srv/nbgrader/exchange

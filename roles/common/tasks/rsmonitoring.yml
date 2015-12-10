@@ -1,0 +1,6 @@
+---
+  
+- name: install rackspace monitoring tools
+  command: "wget -qO- https://monitoring.api.rackspacecloud.com/v1.0/985693/agent_installers/3bd2f56fdb4327cdb3aaeaf6d4559fa6.sh | sudo bash"
+  become: true
+  when: rackspace_monitoring

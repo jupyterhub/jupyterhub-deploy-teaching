@@ -1,0 +1,7 @@
+---
+  
+- name: setup useradd default HOME
+  lineinfile: dest=/etc/default/useradd regexp=^HOME line="HOME={{home_dir}}"
+
+- name: setup useradd default SHELL
+  lineinfile: dest=/etc/default/useradd regexp=^SHELL line="SHELL={{default_shell}}"

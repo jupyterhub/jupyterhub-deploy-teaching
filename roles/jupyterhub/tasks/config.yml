@@ -7,4 +7,3 @@
 - name: install jupyterhub cookie secret
   copy: src="../../../security/cookie_secret" dest={{jupyterhub_srv_dir}}/cookie_secret owner=root group=root mode=0600
   become: true
-

@@ -1,0 +1,5 @@
+---
+  
+- name: mount local file systems  
+  mount: name={{item.name}} src={{item.src}} fstype={{item.fstype}} state=present
+  with_items: "{{local_mounts}}"
