@@ -49,18 +49,43 @@
   command: python3 /tmp/get_pip.py creates=/usr/local/bin/pip3
   become: yes
 
-- name: pip install base scipy packages
+- name: pip install numpy
+  pip: name=numpy state=present executable=pip3 editable=false
+  become: true
+  async: 3600
+  poll: 30
+
+- name: pip install scipy
+  pip: name=scipy state=present executable=pip3 editable=false
+  become: true
+  async: 3600
+  poll: 30
+
+- name: pip install matplotlib
+  pip: name=matplotlib state=present executable=pip3 editable=false
+  become: true
+  async: 3600
+  poll: 10
+
+- name: pip install cython
+  pip: name=cython state=present executable=pip3 editable=false
+  become: true
+  async: 3600
+  poll: 10
+
+- name: pip install pandas
+  pip: name=pandas state=present executable=pip3 editable=false
+  become: true
+  async: 3600
+  poll: 10
+
+- name: pip install other packages
   pip: name={{item}} state=present executable=pip3 editable=false
   become: true
   async: 3600
   poll: 30
   with_items:
-    - numpy
-    - scipy
-    - matplotlib
-    - cython
     - sympy
-    - pandas
     - scikit-learn
     - pillow
     - scikit-image
