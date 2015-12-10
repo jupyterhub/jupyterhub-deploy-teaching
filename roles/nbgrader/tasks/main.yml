@@ -1,7 +1,7 @@
 ---
 
 - name: pip install 
-  pip: name={{item}} state=latest executable=pip3 editable=false
+  pip: name={{item}} state=present executable=pip3 editable=false
   become: true
   with_items:
     - nbgrader

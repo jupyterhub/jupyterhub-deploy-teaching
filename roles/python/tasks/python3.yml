@@ -50,8 +50,10 @@
   become: yes
 
 - name: pip install base scipy packages
-  pip: name={{item}} state=latest executable=pip3 editable=false
+  pip: name={{item}} state=present executable=pip3 editable=false
   become: true
+  async: 3600
+  poll: 30
   with_items:
     - numpy
     - scipy
@@ -73,11 +75,3 @@
     - dask
     - blaze
     - odo
-
-
-
-
-
-
-
-

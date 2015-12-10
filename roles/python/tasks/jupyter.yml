@@ -1,7 +1,7 @@
 ---
 
 - name: pip install ipython/jupyter deps
-  pip: name={{item}} state=latest executable=pip3
+  pip: name={{item}} state=present executable=pip3
   become: true
   with_items:
     - pexpect
@@ -21,7 +21,7 @@
     - pyzmq
 
 - name: pip install jupyter
-  pip: name={{item}} state=latest executable=pip3 editable=false
+  pip: name={{item}} state=present executable=pip3 editable=false
   become: true
   with_items:
       - jupyter
