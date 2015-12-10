@@ -1,0 +1,8 @@
+---
+
+# This is separate because it has to be run after the instructor's
+# user account is setup.
+ 
+- hosts: jupyterhub_hosts
+  roles:
+    - formgrade

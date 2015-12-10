@@ -2,7 +2,7 @@
 
 # These are global variables that are used across roles.
 # You shouldn't have to change these, to customize this deployment
-# see the customize.yml file at the top-level.
+# for individual hosts, create and edit files in the host_vars folder.
 
 default_shell: /bin/bash
 

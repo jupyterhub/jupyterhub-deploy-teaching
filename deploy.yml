@@ -1,8 +1,8 @@
 ---
     
 - hosts: jupyterhub_hosts
-  vars_files:
-    - 'customize.yml'
+  remote_user: root
+  
   roles:
     - common
     - python

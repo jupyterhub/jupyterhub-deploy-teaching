@@ -1,0 +1,11 @@
+# {{ ansible_managed }}
+
+[program:nbgrader_{{nbgrader_course_id}}]
+command=nbgrader formgrade
+redirect_stderr=true
+stdout_logfile={{nbgrader_log_dir}}/nbgrader_{{nbgrader_course_id}}.log
+autostart=true
+autorestart=false
+stopasgroup=true
+user={{nbgrader_owner}}
+directory={{nbgrader_base_dir}}/

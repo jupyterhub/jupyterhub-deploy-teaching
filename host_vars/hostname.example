@@ -1,0 +1,78 @@
+---
+
+# Rename this files with the name of your host
+# and edit to customize its settings.
+
+# ---------------------------------------------------
+# Required
+# ---------------------------------------------------
+
+# The base directory of user accounts
+home_dir: /home
+
+# The users that should be jupyterhub admins
+jupyterhub_admins:
+  - username1
+  - username2
+
+# The users able to use jupyterhub
+# These can also be setup in the jupyterhub admin page
+jupyterhub_users:
+  - username3
+  - username4
+  - username5
+
+proxy_auth_token: asdfasdfasdf
+
+# nbgrader formgrade setup
+nbgrader_course_id: mycourse
+nbgrader_owner: username1
+nbgrader_base_dir: "{{home_dir}}/{{nbgrader_owner}}/nbgrader/{{nbgrader_course_id}}"
+nbgrader_graders: 
+    - username1
+    - username2
+nbgrader_port: 5005
+
+# ---------------------------------------------------
+# Optional
+# ---------------------------------------------------
+
+# To mount local file systems populate this list
+local_mounts: []
+#   - name: /mountpoint1
+#     src: /dev/sdb1
+#     fstype: ext3
+#   - name: /mountpoint2
+#     src: /dev/sdc1
+#     fstype: ext3
+
+# If you want to use letsencrypt to generate SSL key/cert. Otherwise you MUST
+# put your key and cert into the security directory as security/ssl.crt and 
+# security/ssl.key
+use_letsencrypt: false
+letsencrypt_email: ''
+
+# Optionally set this to a list of the GitHub usernames whose public
+# GitHub SSH keys will be installed to allow then to ssh to the server
+# as root.
+github_usernames: []
+
+# Optionally set this as your Google Analytics Tracking ID
+ga_tracking_id: ''
+
+# Optionally set this as your NewRelic license key
+newrelic_license_key: ''
+
+# Optionally set this to true to enable Rackspace monitoring
+rackspace_monitoring: false
+
+# Optionally change use_oauth to `true` and set the other values appropriately
+# to enable Github OAuth.
+use_oauth: false
+oauth_callback_url: https://mydomain.org/hub/oauth_callback
+oauth_client_id: ''
+oauth_client_secret: ''
+
+# Set this to the codename of your ubuntu version.
+# This is used to setup the R apt repositories which are based on this
+ubuntu_codename: wily

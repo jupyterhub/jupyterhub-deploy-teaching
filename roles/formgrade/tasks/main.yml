@@ -1,0 +1,20 @@
+---
+
+- name: make sure base exists
+  file: path={{nbgrader_base_dir}}/ state={{item}} owner={{nbgrader_owner}} mode=0700
+  become: true
+  with_items:
+    - directory
+    - touch
+
+- name: generate a config proxy auth token for the formgrade instance
+  command: jupyterhub token --db={{ jupyterhub_srv_dir }}/jupyterhub.sqlite {{nbgrader_owner}}
+  register: hubapi_token
+
+- name: install nbgrader config file
+  template: "src=nbgrader_config.py.j2 dest={{nbgrader_base_dir}}/nbgrader_config.py owner={{nbgrader_owner}} mode=700"
+  become: true
+
+- name: install supervisor config for nbgrader
+  template: "src=nbgrader.conf.j2 dest=/etc/supervisor/conf.d/nbgrader_{{nbgrader_course_id}}.conf owner=root group=root mode='0600' backup=yes"
+  become: true

@@ -1,0 +1,18 @@
+# Configuration file for nbgrader.
+# Supervisord is responsible for logging.
+c = get_config()
+
+c.NbGrader.course_id = '{{nbgrader_course_id}}'
+
+c.FormgradeApp.authenticator_class = u'nbgrader.auth.hubauth.HubAuth'
+c.FormgradeApp.port = {{nbgrader_port}}
+
+c.HubAuth.proxy_token = u'{{proxy_auth_token}}'
+c.HubAuth.hubapi_token = u'{{hubapi_token.stdout}}'
+c.HubAuth.hub_base_url = u'https://{{ansible_fqdn}}'
+c.HubAuth.notebook_url_prefix = u'{{nbgrader_base_dir}}'
+c.HubAuth.graders = [
+{%- for grader in nbgrader_graders[:-1] -%}
+'{{grader}}',
+{%- endfor -%}
+'{{-nbgrader_graders[-1]-}}']
