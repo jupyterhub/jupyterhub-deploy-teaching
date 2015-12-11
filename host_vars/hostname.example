@@ -64,9 +64,6 @@ ga_tracking_id: ''
 # Optionally set this as your NewRelic license key
 newrelic_license_key: ''
 
-# Optionally set this to true to enable Rackspace monitoring
-rackspace_monitoring: false
-
 # Optionally change use_oauth to `true` and set the other values appropriately
 # to enable Github OAuth.
 use_oauth: false
