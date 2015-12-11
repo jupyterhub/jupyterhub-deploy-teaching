@@ -49,6 +49,8 @@
   command: python3 /tmp/get_pip.py creates=/usr/local/bin/pip3
   become: yes
 
+# Splitting the big compiled packages off into seaprate tasks should help
+
 - name: pip install numpy
   pip: name=numpy state=present executable=pip3 editable=false
   become: true
