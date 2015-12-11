@@ -18,8 +18,8 @@ Individuals using this repo to deploy JupyterHub should be able to:
   - The assumption that all users of the system will be "trusted," meaning that
     you would given them a user-level shell account on the server.
 * Always have SSL/TLS enabled.
-* Monitor the state of the server and set email alerts using NewRelic or Rackspace
-  Monitoring.
+* Optionally monitor the state of the server and set email alerts using NewRelic.
+  The builtin monitoring of your cloud provider can also be used.
 * Specify admin users of JupyterHub.
 * Manager users and authentication using either:
   - Regular Unix users and PAM.
