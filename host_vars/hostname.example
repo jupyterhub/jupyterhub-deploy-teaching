@@ -12,14 +12,14 @@ home_dir: /home
 
 # The users that should be jupyterhub admins
 jupyterhub_admins:
-  - username1
-  - username2
+  - instructor
 
 # The regular users able to use jupyterhub
 jupyterhub_users:
-  - username3
-  - username4
-  - username5
+  - instructor
+  - grader
+  - student1
+  - student2
 
 # The secret token to use for accessing the proxy
 # Creat using something like `openssl rand -hex 32`
@@ -27,11 +27,11 @@ proxy_auth_token: ''
 
 # nbgrader formgrade setup
 nbgrader_course_id: mycourse
-nbgrader_owner: username1
+nbgrader_owner: instructor
 nbgrader_base_dir: "{{home_dir}}/{{nbgrader_owner}}/nbgrader/{{nbgrader_course_id}}"
 nbgrader_graders: 
-    - username1
-    - username2
+    - instructor
+    - grader
 nbgrader_port: 5005
 
 # ---------------------------------------------------
@@ -56,7 +56,7 @@ letsencrypt_email: ''
 # Optionally set this to a list of the GitHub usernames whose public
 # GitHub SSH keys will be installed to allow then to ssh to the server
 # as root.
-github_usernames: []
+github_usernames: ['instructor', 'grader']
 
 # Optionally set this as your Google Analytics Tracking ID
 ga_tracking_id: ''
