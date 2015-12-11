@@ -4,8 +4,6 @@
 # You shouldn't have to change these, to customize this deployment
 # for individual hosts, create and edit files in the host_vars folder.
 
-default_shell: /bin/bash
-
 # ---------------------------------------------------
 # JupyterHub config
 # ---------------------------------------------------

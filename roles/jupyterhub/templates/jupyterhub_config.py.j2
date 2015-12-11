@@ -11,19 +11,20 @@ c.JupyterHub.proxy_auth_token = u'{{proxy_auth_token}}'
 {% if use_oauth %}
 c.JupyterHub.authenticator_class = u'oauthenticator.LocalGitHubOAuthenticator'
 c.LocalGitHubOAuthenticator.create_system_users = True
+c.Authenticator.add_user_cmd =  ['adduser', '-q', '--home', '{{home_dir}}/USERNAME', '--gecos', '""', '--disabled-password']
 c.GitHubOAuthenticator.oauth_callback_url = u'{{ oauth_callback_url }}'
 c.GitHubOAuthenticator.client_id = u'{{ oauth_client_id }}'
 c.GitHubOAuthenticator.client_secret = u'{{ oauth_client_secret }}'
 {% endif %}
 
-{% if jupyterhub_admins|length %}
-c.Authenticator.jupyterhub_admins = {
-{%- for user in jupyterhub_admins[:-1] -%}
+{% if jupyterhub_admin_users|length %}
+c.Authenticator.admin_users = {
+{%- for user in jupyterhub_admin_users[:-1] -%}
 '{{user}}',
 {%- endfor -%}
-'{{-jupyterhub_admins[-1]-}}'}
+'{{-jupyterhub_admin_users[-1]-}}'}
 {% else %}
-c.Authenticator.jupyterhub_admins = set()
+c.Authenticator.admin_users = set()
 {% endif %}
 
 {% if jupyterhub_users|length %}

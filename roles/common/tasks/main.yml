@@ -4,4 +4,3 @@
 - include: packages.yml
 - include: mounts.yml
 - include: ssh.yml
-- include: useradd.yml

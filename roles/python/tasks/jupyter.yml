@@ -14,8 +14,8 @@
     - jsonschema
     - mistune
     # - terminado
-    # temporarily install from this branch to fix the EBADF error
-    - git+https://github.com/takluyver/terminado.git@eof-close-pty-obj#egg=terminado    
+    # temporarily install from master until a release is made
+    - git+https://github.com/takluyver/terminado.git#egg=terminado    
     - tornado
     - jinja2
     - pyzmq
