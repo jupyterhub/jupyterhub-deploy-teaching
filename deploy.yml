@@ -2,7 +2,6 @@
     
 - hosts: jupyterhub_hosts
   remote_user: root
-  
   roles:
     - common
     - python
@@ -11,6 +10,7 @@
     - newrelic
     - nginx
     - supervisor
+    - saveusers
     - jupyterhub
     - nbgrader
     - bash

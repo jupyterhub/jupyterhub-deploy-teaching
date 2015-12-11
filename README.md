@@ -3,7 +3,7 @@
 This repository contains the code being used to deploy JupyterHub for DATA 301,
 "Introduction to Data Science," at Cal Poly.
 
-# Design
+## Design
 
 Individuals using this repo to deploy JupyterHub should be able to:
 
@@ -77,7 +77,7 @@ To limit the deployment to certain hosts, add the `-l hostname` to these command
 
 	ansible-playbook -l hostname deploy.yml
 
-# Notes
+## Notes
 
 * The logs for `jupyterhub` are in `/var/log/jupyterhub`.
 * The logs for `nbgrader` are in `/var/log/nbgrader`.
@@ -86,3 +86,23 @@ To limit the deployment to certain hosts, add the `-l hostname` to these command
 * To manage the running status of `jupyterhub` and `nbgrader`, you will need to SSH
   to the server, and use `supervisorctl` to start those services.
 * You can edit the ansible configuration by editing `./ansible_cfg`.
+
+## Saving and restoring users
+
+In some situations, you may remount your user's home directories into a new instance that
+doesn't have their user accounts, but has their home directories. When recreating the
+same users it is important that they all have the same uids so the new users have
+ownership of the home directories.
+
+To save the list of usernames and uids in `{{homedir}}/saved_users.txt`:
+
+ansible-playbook saveusers.yml
+
+Then, when you run deploy.yml, it will look for this file and if it exists, will create
+those users with those exact uids and home directories.
+
+You can also manually create the users by running:
+
+	python3 create_users.py
+
+in the home directory.
