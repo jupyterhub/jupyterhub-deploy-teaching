@@ -1,7 +1,8 @@
 ---
 
+# Using the npm ansible module doesn't work!!!
 - name: npm install configurable-http-proxy
-  npm: name=jupyter/configurable-http-proxy global=yes state=latest
+  command: npm install -g jupyter/configurable-http-proxy
   become: true
 
 - name: pip install 
