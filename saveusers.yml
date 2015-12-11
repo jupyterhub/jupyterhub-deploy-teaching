@@ -5,3 +5,5 @@
     - name: save the old user accounts
       command: python3 save_users.py chdir={{home_dir}}
       become: true
+      when: use_oauth
+

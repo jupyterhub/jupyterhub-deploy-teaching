@@ -15,8 +15,7 @@ jupyterhub_admins:
   - username1
   - username2
 
-# The users able to use jupyterhub
-# These can also be setup in the jupyterhub admin page
+# The regular users able to use jupyterhub
 jupyterhub_users:
   - username3
   - username4

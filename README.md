@@ -1,7 +1,11 @@
 # Deploy JupyterHub for teaching DATA 301
 
 This repository contains the code being used to deploy JupyterHub for DATA 301,
-"Introduction to Data Science," at Cal Poly.
+"Introduction to Data Science," at Cal Poly. This is designed to be a simple
+and reusable JupyterHub deployment, while still following best practices.
+
+The main usage case targted is small to medium groups of trusted users working
+on a single server.
 
 ## Design
 
@@ -11,37 +15,37 @@ Individuals using this repo to deploy JupyterHub should be able to:
   - An empty Ubuntu latest stable server with SSH key based access.
   - A valid DNS name.
   - A formatted and mounted directory to use for user home directories.
-  - A formatted and mounted directory to use for datasets.
   - The assumption that all users of the system will be "trusted," meaning that
     you would given them a user-level shell account on the server.
 * Always have SSL/TLS enabled.
-* Monitor the state of the server and set email alerts.
+* Monitor the state of the server and set email alerts using NewRelic or Rackspace
+  Monitoring.
 * Specify admin users of JupyterHub.
-* Configure nbgrader:
-  - The course id.
-  - The location of the nbgrader config.
-* Have all user directories automatically created.
+* Manager users and authentication using either:
+  - Regular Unix users and PAM.
+  - GitHub OAuth
 * Manage the running of jupyterhub and nbgrader using supervisor.
+* Specify local drives to be mounted.
 * Add the public SSH keys of GitHub users who need to be able to SSH to the server
-  as `root`.
+  as `root` for administration.
 * Have a deployment that is as simple as possible:
-  - No Docker for now.
-  - Nginx as a frontend proxy and termination point for SSL/TLS.
-  - On a single server.
+  - No Docker.
+  - Nginx as a frontend proxy, serving static assets, and a termination point for SSL/TLS.
+  - A single server.
   - Ansible for config.
   - Optionally use https://letsencrypt.org/ for generating SSL certificates.
-
-Admin users of the deployment should be able to:
-
-* Access the JupyterHub admin panel and all of its functionality, including
-  starting and stopping user notebook severs and adding users by GitHub usernames.
+* Configure and run nbgrader:
+  - The course name.
+  - The location of the nbgrader config.
+  - The instructors username.
+  - Graders' usernames.
 
 End users of the deployment should be able to:
 
 * Use the following Jupyter kernels:
   - Python 3 IPython kernel with the main Python libraries for data science.
   - Bash (https://github.com/takluyver/bash_kernel).
-* Sign in using their GitHub username and password.
+* Sign in using their GitHub or Unix credentials.
 * Have a persistent home directory.
 * Have outbound network access.
 
@@ -51,7 +55,7 @@ End users of the deployment should be able to:
   - Start the server running latest Ubuntu.
   - Enable passwordless SSH access as `root`.
   - Partition and format any local disks you want to mount.
-  - Make sure the servers hostname matches the fully qualified domain name (FQDN).
+  - Make sure the server's hostname matches the fully qualified domain name (FQDN).
   - Make sure there is a valid DNS entry for the server.
   - If you not going to use letsencrypt, obtain a trusted SSL certificate and
     key for the server at that FQDN.
@@ -69,23 +73,42 @@ End users of the deployment should be able to:
 
 	ansible-playbook deploy.yml
 
-6. After you have setup user accounts, run the formgrade deployment:
+6. SSH to the server and reload supervisor:
+
+	supervisorctl reload
+
+# To run nbgrader
+
+The main nbgrader package will be installed in the above deployment. However, to run
+nbgrader's formgrade application or use its notebook extensions, additional steps are
+needed.
+
+Each user who wants to use the notebook extension will need to run:
+
+	nbgrader extension activate
+	
+After the main instructor (`nbgrader_owner`) has logged into the system, run the
+following command to deploy formgrade:
 
 	ansible-playbook deploy_formgrade.yml
 
-To limit the deployment to certain hosts, add the `-l hostname` to these commands:
+Then SSH to the server and restart jupyterhub and nbgrader by doing:
 
-	ansible-playbook -l hostname deploy.yml
+	supervisorctl reload
 
 ## Notes
+
+* To limit the deployment to certain hosts, add the `-l hostname` to these commands:
+
+    ansible-playbook -l hostname deploy.yml
 
 * The logs for `jupyterhub` are in `/var/log/jupyterhub`.
 * The logs for `nbgrader` are in `/var/log/nbgrader`.
 * If you are not using GitHub OAuth, you will need to manually create users using
-  `useradd` or `adduser`.
-* To manage the running status of `jupyterhub` and `nbgrader`, you will need to SSH
-  to the server, and use `supervisorctl` to start those services.
-* You can edit the ansible configuration by editing `./ansible_cfg`.
+  `adduser`: `adduser --gecos "" username`.
+* Change the ansible configuration by editing `./ansible_cfg`.
+* To manage the jupyterhub and nbgrader services by SSH to the server and run
+  `supervisorctl jupyterhub [start|stop|restart]`
 
 ## Saving and restoring users
 
@@ -93,6 +116,8 @@ In some situations, you may remount your user's home directories into a new inst
 doesn't have their user accounts, but has their home directories. When recreating the
 same users it is important that they all have the same uids so the new users have
 ownership of the home directories.
+
+**This is only relevant when using GitHub OAuth for users and authentication.**
 
 To save the list of usernames and uids in `{{homedir}}/saved_users.txt`:
 

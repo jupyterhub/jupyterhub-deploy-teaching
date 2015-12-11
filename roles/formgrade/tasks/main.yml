@@ -7,6 +7,16 @@
     - directory
     - touch
 
+- name: make sure subdirectories exist
+  file: path={{nbgrader_base_dir}}/{{item}}/ state=directory owner={{nbgrader_owner}} mode=0700
+  become: true
+  with_items:
+    - source
+    - release
+    - feedback
+    - autograded
+    - submitted
+
 - name: generate a config proxy auth token for the formgrade instance
   command: jupyterhub token --db={{ jupyterhub_srv_dir }}/jupyterhub.sqlite {{nbgrader_owner}}
   register: hubapi_token

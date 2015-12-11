@@ -1,0 +1,12 @@
+---
+  
+- name: install save_users.py into {{home_dir}}
+  copy: src=save_users.py dest={{home_dir}} owner=root group=root mode=0600
+
+- name: install create_users.py into {{home_dir}}
+  copy: src=create_users.py dest={{home_dir}} owner=root group=root mode=0600
+    
+- name: run create_users.py
+  command: python3 create_users.py chdir={{home_dir}}
+  become: true
+  when: use_oauth
