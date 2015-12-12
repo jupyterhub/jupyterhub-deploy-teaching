@@ -38,7 +38,9 @@ nbgrader_port: 5005
 # Optional
 # ---------------------------------------------------
 
-# To mount local file systems populate this list
+# To mount local file systems populate this list.
+# This adds the entries to /etc/fstab, creates the mount point and mounts them.
+# Disks must be partitioned and formatted.
 local_mounts: []
 #   - name: /mountpoint1
 #     src: /dev/sdb1
