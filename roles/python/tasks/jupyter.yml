@@ -27,8 +27,6 @@
       - jupyter
       - ipywidgets
       - ipyparallel
-      # Run from master!!!
-      - git+https://github.com/jupyter/notebook.git#egg=notebook
 
 - name: install python3 kernelspec
   command: python3 -m IPython kernelspec install-self
