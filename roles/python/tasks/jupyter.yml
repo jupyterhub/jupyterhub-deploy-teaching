@@ -1,5 +1,12 @@
 ---
 
+- name: pip install 
+  pip: name={{item}} state=present executable=pip3 editable=false
+  become: true
+  with_items:
+    # temporarily install from master until a release is made
+    - git+https://github.com/takluyver/terminado.git#egg=terminado
+
 - name: pip install ipython/jupyter deps
   pip: name={{item}} state=present executable=pip3
   become: true
@@ -12,10 +19,7 @@
     - requests
     - jsonpointer
     - jsonschema
-    - mistune
-    # - terminado
-    # temporarily install from master until a release is made
-    - git+https://github.com/takluyver/terminado.git#egg=terminado    
+    - mistune   
     - tornado
     - jinja2
     - pyzmq
