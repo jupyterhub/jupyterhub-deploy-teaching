@@ -3,3 +3,6 @@
 - name: install supervisor config for jupyterhub
   template: src=jupyterhub.conf.j2 dest=/etc/supervisor/conf.d/jupyterhub.conf owner=root group=root mode=0600 backup=yes
   become: true
+
+- name: start jupyterhub with supervisor
+  supervisorctl: name=jupyterhub state=restarted
