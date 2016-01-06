@@ -65,7 +65,7 @@ End users of the deployment should be able to:
         pip install git+https://github.com/ansible/ansible#egg=ansible
 
 2. Edit the `./hosts` file to lists the FQDN's of the hosts in the jupyterhub_hosts
-   group.
+   group. See `./hosts.example` for an example.
 2. For each host, create a file in `./host_vars` with the name of the host, starting
    from `./host_vars/hostname.example`.
 3. Create a `./security/cookie_secret` file by doing:
