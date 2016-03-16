@@ -7,6 +7,7 @@ c.JupyterHub.port = 8000
 c.JupyterHub.cookie_secret_file = u'{{ jupyterhub_srv_dir }}/cookie_secret'
 c.JupyterHub.db_url = u'{{ jupyterhub_srv_dir }}/jupyterhub.sqlite'
 c.JupyterHub.proxy_auth_token = u'{{proxy_auth_token}}'
+c.JupyterHub.confirm_no_ssl = True
 
 {% if use_oauth %}
 c.JupyterHub.authenticator_class = u'oauthenticator.LocalGitHubOAuthenticator'
