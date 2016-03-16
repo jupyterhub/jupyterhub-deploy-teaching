@@ -55,6 +55,9 @@ local_mounts: []
 use_letsencrypt: false
 letsencrypt_email: ''
 
+# If you want users to have /public_html/username directories set this to true
+nginx_public_html: false
+
 # Optionally set this to a list of the GitHub usernames whose public
 # GitHub SSH keys will be installed to allow then to ssh to the server
 # as root.

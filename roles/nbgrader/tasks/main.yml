@@ -4,9 +4,8 @@
   pip: name={{item}} state=present executable=pip3 editable=false
   become: true
   with_items:
-    - nbgrader
-    # this doesn't work currently as nbgrader is based on flit
-    # - git+https://github.com/jupyter/nbgrader.git@master#egg=nbgrader
+    # - nbgrader
+    - git+https://github.com/jupyter/nbgrader.git@master#egg=nbgrader
 
 - name: make sure /var/log/nbgrader exists
   file: path={{nbgrader_log_dir}}/ state={{item}} owner=root group=root mode=0755

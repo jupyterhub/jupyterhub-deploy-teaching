@@ -51,6 +51,14 @@ http {
             alias '{{ notebook_static_directory.stdout }}/$2';
         }
 
+{% if nginx_public_html %}
+        location ~ ^/public_html/([a-zA-Z0-9\-_%]*)(/.*)?$ {
+            alias /nbhome/$1/public_html$2;
+            index  index.html index.htm Index.html;
+            autoindex on;
+        }
+{% endif %}
+
         location / {
             proxy_pass http://{{ ansible_default_ipv4.address }}:8000;
 

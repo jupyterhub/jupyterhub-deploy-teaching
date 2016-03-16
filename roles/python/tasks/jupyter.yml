@@ -5,7 +5,8 @@
   become: true
   with_items:
     # temporarily install from master until a release is made
-    - git+https://github.com/takluyver/terminado.git#egg=terminado
+    # - git+https://github.com/takluyver/terminado.git#egg=terminado
+    - terminado
 
 - name: pip install ipython/jupyter deps
   pip: name={{item}} state=present executable=pip3
@@ -29,6 +30,7 @@
   become: true
   with_items:
       - jupyter
+      - notebook
       - ipywidgets
       - ipyparallel
 
