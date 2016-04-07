@@ -136,12 +136,26 @@ in the home directory.
 
 With the above setup, instructors can start to use nbgrader. This section contains a rough sketch
 of what that looks like. For full details see the [nbgrader
-documentation](http://nbgrader.readthedocs.org/en/stable/).
+documentation](http://nbgrader.readthedocs.org/en/latest/).
 
+To use nbgrader, an instructor will primarily use the nbgrader command line
+program. Before doing this, the instructor will need to edit the
+`nbgrader_config.py` file with a list of students and assignments as follows:
 
-To use nbgrader, an instructor will primarily use the nbgrader command line program.
+```python
+c.NbGrader.db_assignments = [dict(name="ps1")]
+c.NbGrader.db_students = [
+    dict(id="bitdiddle", first_name="Ben", last_name="Bitdiddle"),
+    dict(id="hacker", first_name="Alyssa", last_name="Hacker"),
+    dict(id="reasoner", first_name="Louis", last_name="Reasoner")
+]
+```
 
-First create a directory for an assignment's source:
+You can also add an `email` field to each student and a `duedate` field to
+each assignment. Each time you create a new assignment add it to the config
+file.
+
+For each assignment, first create a directory for an assignment's source:
 
 	cd ~/nbgrader/<course>
 	mkdir source/<assignment>
@@ -155,7 +169,7 @@ These notebooks should be prepared using the nbgrader "Create Assignment Celltoo
 the assignment:
 
 
-	nbgrader assign --create <assignment>
+	nbgrader assign <assignment>
 	
 That will create the student versions of the notebooks and put them into the
 `~/nbgrader/<course>/release/<assignment>` directory with your solutions removed.
