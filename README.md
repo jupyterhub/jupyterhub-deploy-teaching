@@ -1,11 +1,12 @@
-# Deploy JupyterHub for teaching DATA 301
+# Deploy JupyterHub for teaching
 
-This repository contains the code being used to deploy JupyterHub for DATA 301,
-"Introduction to Data Science," at Cal Poly. This is designed to be a simple
-and reusable JupyterHub deployment, while still following best practices.
+The goal of this repository is to produce a reference deployment of JupyterHub for teaching with nbgrader.
 
-The main usage case targted is small to medium groups of trusted users working
-on a single server.
+The repository started from [this deployment](https://github.com/calpolydatascience/jupyterhub-deploy-data301) of JupyterHub
+for "Introduction to Data Scient" at Cal Poly.
+It is designed to be a simple and reusable JupyterHub deployment, while following best practices.
+
+The main use case targeted is small to medium groups of trusted users working on a single server.
 
 ## Design
 
