@@ -3,7 +3,7 @@
 The goal of this repository is to produce a reference deployment of JupyterHub for teaching with nbgrader.
 
 The repository started from [this deployment](https://github.com/calpolydatascience/jupyterhub-deploy-data301) of JupyterHub
-for "Introduction to Data Scient" at Cal Poly.
+for "Introduction to Data Science" at Cal Poly.
 It is designed to be a simple and reusable JupyterHub deployment, while following best practices.
 
 The main use case targeted is small to medium groups of trusted users working on a single server.
