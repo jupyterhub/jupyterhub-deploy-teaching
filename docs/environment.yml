@@ -1,0 +1,7 @@
+name: jupyterhub_teaching
+dependencies:
+- sphinx_rtd_theme
+- pip:
+    - sphinx>=1.3.6
+    - recommonmark
+    - jupyter_sphinx_theme
