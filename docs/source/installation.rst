@@ -15,6 +15,7 @@ Prerequisites
 - Verify a valid DNS entry for the server.
 
 - Choose an SSL certificate source. Use either of these options:
+
     * `Let's Encrypt <https://letsencrypt.org/>`_
     * obtain a trusted SSL certificate and key for the server at that FQDN.
 
