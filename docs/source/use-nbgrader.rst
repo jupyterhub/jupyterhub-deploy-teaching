@@ -14,7 +14,8 @@ program.
 Create a list of students and assignments
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Before doing this, the instructor will need to edit the
-`nbgrader_config.py` file with a list of students and assignments as follows:
+:file:`nbgrader_config.py` file with a list of students and assignments as
+follows:
 
 .. code:: python
 
@@ -25,9 +26,11 @@ Before doing this, the instructor will need to edit the
         dict(id="reasoner", first_name="Louis", last_name="Reasoner")
     ]
 
-You can also add an `email` field to each student and a `duedate` field to
-each assignment. Each time you create a new assignment add it to the config
-file.
+You can also add an ``email`` field to each student and a ``duedate`` field to
+each assignment.
+
+Remember to add new assignments to the :file:`nbgrader_config.py` file as the
+assignments are created.
 
 Create an assignment directory
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -113,7 +116,8 @@ To see the full command line options for nbgrader, run::
 
 Some other things you can do with nbgrader:
 
-* Run `collect` and `autograde` commands for a single student or notebook.
+* Run :command:`collect` and :command:`autograde` commands for a single
+  student or notebook.
 * Collect a single assignment multiple times and regrade all or parts
   selectively.
 
