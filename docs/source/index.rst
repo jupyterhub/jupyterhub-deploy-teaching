@@ -2,14 +2,18 @@ JupyterHub for Teaching
 =======================
 
 `Abstract <abstract-teaching>`_
+
 `Contents <content>`_
 
+Version: |version|
+
+Date: |today|
 
 .. _abstract-teaching:
 
 Abstract
 --------
-The deployment is designed for teaching a small to medium
+This deployment is designed for teaching a small to medium
 group of trusted users. 
 
 As a simple, reusable JupyterHub deployment for your reference, this
@@ -25,7 +29,7 @@ Contents
 .. toctree::
    :maxdepth: 2
 
-   design.md
+   design.rst
    installation.rst
    configure-nbgrader.rst
    use-nbgrader.md
