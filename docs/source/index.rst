@@ -1,10 +1,6 @@
 JupyterHub for Teaching
 =======================
 
-`Abstract <abstract-teaching>`_
-
-`Contents <content>`_
-
 Version: |version|
 
 Date: |today|
@@ -32,5 +28,5 @@ Contents
    design.rst
    installation.rst
    configure-nbgrader.rst
-   use-nbgrader.md
+   use-nbgrader.rst
    acknowledgment.rst
