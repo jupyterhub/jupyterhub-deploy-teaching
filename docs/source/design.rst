@@ -12,7 +12,8 @@ should be able to have a deployment that is as simple as possible:
   assets, and a termination point for SSL/TLS.
 - A single server.
 - `Ansible <https://www.ansible.com/resources>`_ for configuration.
-- Optionally, use `Let's Encrypt`_  for generating SSL certificates.
+- Optionally, use `Let's Encrypt  <https://letsencrypt.org/>`_  for
+  generating SSL certificates.
  
 JupyterHub
 ~~~~~~~~~~ 
