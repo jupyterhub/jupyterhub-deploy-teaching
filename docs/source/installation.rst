@@ -35,7 +35,7 @@ Secure your deployment
 
     $ openssl rand -hex 1024 > ./security/cookie_secret
 
-2. If you are using Let's Encrypt, skip this step.
+2. If you are using `Let's Encrypt <https://letsencrypt.org/>`_, skip this step.
    Otherwise, install your SSL private key :file:`./security/ssl.key` and
    certificate as :file:`./security/ssl.crt`.
 
@@ -52,6 +52,8 @@ Verify your deployment
 1. SSH into the server::
 
     $ ssh root@{hostname}
+    
+substituting your hostname for {hostname}. For example, ``ssh root@jupyter.org``.
 
 2. Reload supervisor::
 

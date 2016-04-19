@@ -1,33 +1,32 @@
 JupyterHub for Teaching
 =======================
 
-`Abstract <abstract-teaching>`_
+Version: |version|
 
-`Contents <content>`_
-
-`Search in this guide <search-guide>`_
+Date: |today|
 
 .. _abstract-teaching:
 
-====================  ==========================================
-Reference deployment  JupyterHub and nbgrader on a single server
+Abstract
+--------
+This deployment is designed for teaching a small to medium
+group of trusted users. 
 
-Targeted use case     Teaching a small to medium group of trusted users
-
-Design note           A simple, reusable JupyterHub deployment that follows best practices
-====================  ==========================================
+As a simple, reusable JupyterHub deployment for your reference, this
+repository enables installation and deployment of JupyterHub and nbgrader
+on a single server. The reference deployment follows best practices and
+has been used by Professor Brian Granger when teaching "Introduction to
+Data Science".
 
 .. _content:
 
+Contents
+--------
 .. toctree::
    :maxdepth: 2
 
-   design.md
+   design.rst
    installation.rst
    configure-nbgrader.rst
-   use-nbgrader.md
+   use-nbgrader.rst
    acknowledgment.rst
-
-.. _search-guide:
-
-Search
