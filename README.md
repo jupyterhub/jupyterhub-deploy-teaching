@@ -63,10 +63,9 @@ End users of the deployment should be able to:
   - Make sure there is a valid DNS entry for the server.
   - If you not going to use letsencrypt, obtain a trusted SSL certificate and
     key for the server at that FQDN.
-  - Install ansible ≥ 2.0, which has not been released as of January 2016.
-    To get ansible from master:
+  - Install ansible ≥ 2.0:
 
-        pip install git+https://github.com/ansible/ansible#egg=ansible
+        pip install ansible>=2
 
 2. Edit the `./hosts` file to lists the FQDN's of the hosts in the jupyterhub_hosts
    group. See `./hosts.example` for an example.
