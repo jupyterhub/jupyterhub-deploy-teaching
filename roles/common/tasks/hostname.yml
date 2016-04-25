@@ -1,0 +1,5 @@
+---
+
+- name: set the hostname
+  hostname: name="{{inventory_hostname}}"
+  become: yes

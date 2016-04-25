@@ -11,7 +11,7 @@
 home_dir: /home
 
 # The users that should be jupyterhub admins
-jupyterhub_admins:
+jupyterhub_admin_users:
   - instructor
 
 # The regular users able to use jupyterhub
