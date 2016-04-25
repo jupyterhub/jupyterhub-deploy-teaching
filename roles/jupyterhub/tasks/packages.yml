@@ -9,5 +9,5 @@
   pip: name={{item}} state=present executable=pip3 editable=false
   become: true
   with_items:
-    - git+https://github.com/jupyter/jupyterhub#egg=jupyterhub
-    - git+https://github.com/jupyter/oauthenticator#egg=oauthenticator
+    - jupyterhub==0.6
+    - oauthenticator==0.3

@@ -38,5 +38,8 @@ c.Authenticator.whitelist = {
 c.Authenticator.whitelist = set()
 {% endif %}
 
-
-
+{% if formgrader_hubapi_token %}
+c.JupyterHub.api_tokens = {
+    '{{formgrader_hubapi_token}}': '{{nbgrader_owner}}',
+}
+{% endif %}
