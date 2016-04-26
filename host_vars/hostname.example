@@ -22,7 +22,7 @@ jupyterhub_users:
   - student2
 
 # The secret token to use for accessing the proxy
-# Creat using something like `openssl rand -hex 32`
+# Create using something like `openssl rand -hex 32`
 proxy_auth_token: ''
 
 # nbgrader formgrade setup
@@ -33,6 +33,11 @@ nbgrader_graders:
     - instructor
     - grader
 nbgrader_port: 5005
+
+# The API token formgrader will use to make requests of the Hub
+# Create using something like `openssl rand -hex 32`
+formgrader_hubapi_token: ''
+
 
 # ---------------------------------------------------
 # Optional

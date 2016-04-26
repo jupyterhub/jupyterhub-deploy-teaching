@@ -17,10 +17,6 @@
     - autograded
     - submitted
 
-- name: generate a config proxy auth token for the formgrade instance
-  command: jupyterhub token --db={{ jupyterhub_srv_dir }}/jupyterhub.sqlite {{nbgrader_owner}}
-  register: hubapi_token
-
 - name: install nbgrader config file
   template: "src=nbgrader_config.py.j2 dest={{nbgrader_base_dir}}/nbgrader_config.py owner={{nbgrader_owner}} mode=700"
   become: true
