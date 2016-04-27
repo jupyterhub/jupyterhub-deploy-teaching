@@ -1,0 +1,34 @@
+---
+
+# derived from https://github.com/uchida/ansible-miniconda-role
+
+- name: miniconda installer is downloaded
+  get_url:
+    # disable validate-certs due to Python 2 SSL issues
+    # we use checksum anyway, so it should be fine
+    validate_certs: False
+    url: "https://repo.continuum.io/miniconda/{{conda_installer}}"
+    dest: "/tmp/{{conda_installer}}"
+    checksum: "{{conda_checksum}}"
+    mode: 0755
+
+- name: miniconda is installed
+  shell:
+    '"/tmp/{{ conda_installer }}" -b -p "{{ conda_prefix }}"'
+  args:
+    creates: "{{ conda_prefix }}"
+    executable: /bin/bash
+
+- name: add conda to PATH
+  # add it to the front of bashrc, so it's even on noninteractive paths
+  lineinfile:
+    dest: /etc/bash.bashrc
+    state: present
+    line: "export PATH={{conda_prefix}}/bin:$PATH"
+    insertbefore: BOF
+
+- name: add conda config
+  copy:
+    content: "{{ conda_config | to_yaml }}"
+    dest: "{{ conda_prefix }}/.condarc"
+

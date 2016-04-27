@@ -1,40 +1,22 @@
 ---
 
-- name: pip install 
-  pip: name={{item}} state=present executable=pip3 editable=false
-  become: true
-  with_items:
-    # temporarily install from master until a release is made
-    # - git+https://github.com/takluyver/terminado.git#egg=terminado
-    - terminado
 
-- name: pip install ipython/jupyter deps
-  pip: name={{item}} state=present executable=pip3
+- name: conda install ipython/jupyter deps
+  conda: name={{item}} state=present
   become: true
   with_items:
-    - pexpect
-    - nose
-    - pygments
-    - Sphinx
-    - numpydoc
-    - requests
-    - jsonpointer
-    - jsonschema
-    - mistune   
-    - tornado
-    - jinja2
-    - pyzmq
+    - notebook==4.2
+    - ipyparallel
+    - ipykernel
+    - nbconvert
+    - pandoc
 
-- name: pip install jupyter
-  pip: name={{item}} state=present executable=pip3 editable=false
+- name: pip install non-conda deps
+  pip: name={{item}} state=present
   become: true
   with_items:
-      - jupyter
-      - notebook
-      - ipywidgets
-      - ipyparallel
+    - ipywidgets==5
 
 - name: install python3 kernelspec
-  command: python3 -m IPython kernelspec install-self
+  command: python3 -m IPython kernel install
   become: true
-  ignore_errors: yes
