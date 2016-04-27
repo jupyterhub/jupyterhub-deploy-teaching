@@ -14,5 +14,5 @@ for user in users:
         data.append((username, uid))
         print("Saving user: {}:{}".format(username, uid))
 
-with open('./saved_users.txt','w') as f:
-    f.write(json.dumps(data))
+with open('./saved_users.txt', 'w') as f:
+    json.dump(data, f)
