@@ -4,5 +4,12 @@
   template: src=jupyterhub.conf.j2 dest=/etc/supervisor/conf.d/jupyterhub.conf owner=root group=root mode=0600 backup=yes
   become: true
 
-- name: start jupyterhub with supervisor
+- name: install jupyterhub launch script
+  action: template src=start-jupyterhub.sh.j2 dest={{jupyterhub_srv_dir}}/start-jupyterhub.sh mode=0700
+  become: true
+
+- name: load jupyterhub supervisor config
+  action: supervisorctl name=jupyterhub state=present
+
+- name: restart jupyterhub with supervisor
   supervisorctl: name=jupyterhub state=restarted

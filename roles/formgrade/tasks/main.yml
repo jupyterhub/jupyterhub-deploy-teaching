@@ -24,3 +24,11 @@
 - name: install supervisor config for nbgrader
   template: "src=nbgrader.conf.j2 dest=/etc/supervisor/conf.d/nbgrader_{{nbgrader_course_id}}.conf owner=root group=root mode='0600' backup=yes"
   become: true
+
+- name: load nbgrader supervisor config
+  supervisorctl: name=nbgrader_{{nbgrader_course_id}} state=present
+  become: true
+
+- name: start nbgrader with supervisor
+  supervisorctl: name=nbgrader_{{nbgrader_course_id}} state=restarted
+  become: true

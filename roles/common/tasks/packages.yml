@@ -4,6 +4,10 @@
   apt: update_cache=yes cache_valid_time=3600
   become: yes
 
+- name: install aptitude
+  apt: pkg=aptitude
+  become: yes
+
 - name: Upgrade all packages
   apt: upgrade=safe
   become: yes
@@ -26,7 +30,7 @@
     - vim
     - emacs
     - tree
-    - htop 
+    - htop
 
 - name: install open-iscsi for cloud block volumes
   apt: pkg=open-iscsi state=present update_cache=yes cache_valid_time=3600
