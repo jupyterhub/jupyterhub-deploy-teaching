@@ -22,10 +22,10 @@
   when: use_letsencrypt
 
 - name: run letsencrypt to generate SSL certs
-  command: ./letsencrypt-auto certonly --agree-tos -m {{letsencrypt_email}} -d {{ansible_fqdn}}
+  command: ./letsencrypt-auto certonly --standalone --agree-tos -m {{letsencrypt_email}} -d {{inventory_hostname}}
   args:
     chdir: /tmp/letsencrypt
-    creates: /etc/letsencrypt/live/{{ansible_fqdn}}/
+    creates: /etc/letsencrypt/live/{{inventory_hostname}}/
   become: true
   when: use_letsencrypt
 
@@ -54,10 +54,6 @@
 # Configure and launch nginx
 # ---------------------------------------------------
 
-- name: start the nginx service
-  service: name=nginx state=started enabled=yes
-  become: true
-
 - name: find notebook static directory
   command: python3 -c 'import notebook; import os; print(os.path.join(notebook.__path__[0], "static"));'
   register: notebook_static_directory
@@ -67,3 +63,8 @@
   become: true
   notify:
     - reload nginx
+
+- name: start the nginx service
+  service: name=nginx state=started enabled=yes
+  become: true
+
