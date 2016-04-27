@@ -22,7 +22,7 @@
   when: use_letsencrypt
 
 - name: run letsencrypt to generate SSL certs
-  command: ./letsencrypt-auto certonly --agree-tos -m {{letsencrypt_email}} -d {{inventory_hostname}}
+  command: ./letsencrypt-auto certonly --standalone --agree-tos -m {{letsencrypt_email}} -d {{inventory_hostname}}
   args:
     chdir: /tmp/letsencrypt
     creates: /etc/letsencrypt/live/{{inventory_hostname}}/
