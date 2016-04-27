@@ -1,7 +1,7 @@
 # {{ ansible_managed }}
 
 [program:nbgrader_{{nbgrader_course_id}}]
-command=nbgrader formgrade
+command=/opt/conda/bin/nbgrader formgrade
 redirect_stderr=true
 stdout_logfile={{nbgrader_log_dir}}/nbgrader_{{nbgrader_course_id}}.log
 autostart=true
@@ -9,4 +9,4 @@ autorestart=false
 stopasgroup=true
 user={{nbgrader_owner}}
 directory={{nbgrader_base_dir}}/
-environment=HOME="{{home_dir}}/{{nbgrader_owner}}",USER="{{nbgrader_owner}}"
+environment=HOME="{{home_dir}}/{{nbgrader_owner}}",USER="{{nbgrader_owner}}",PATH="/opt/conda/bin:%(ENV_PATH)s"
