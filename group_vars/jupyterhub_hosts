@@ -36,8 +36,8 @@ ssl_key_path: "{{ssl_path}}/ssl.key"
 ssl_cert_path: "{{ssl_path}}/ssl.crt"
 
 # If letsencrypt is used to get SSL cert
-letsencrypt_ssl_key_path: "/etc/letsencrypt/live/{{ansible_fqdn}}/privkey.pem"
-letsencrypt_ssl_cert_path: "/etc/letsencrypt/live/{{ansible_fqdn}}/fullchain.pem"
+letsencrypt_ssl_key_path: "/etc/letsencrypt/live/{{inventory_hostname}}/privkey.pem"
+letsencrypt_ssl_cert_path: "/etc/letsencrypt/live/{{inventory_hostname}}/fullchain.pem"
 
 # ---------------------------------------------------
 # Nbgrader config
