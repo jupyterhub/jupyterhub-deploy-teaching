@@ -5,7 +5,6 @@
   roles:
     - common
     - python
-    - node
     - { role: newrelic, when: newrelic_license_key is defined and newrelic_license_key != ''}
     - nginx
     - supervisor
