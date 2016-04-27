@@ -11,21 +11,18 @@ if not os.path.isfile(fname):
     sys.exit()
 
 with open(fname, 'r') as f:
-    users = json.loads(f.read())    
+    users = json.load(f)
 
 for username, uid in users:
     home_dir = os.path.abspath(os.path.join('.', username))
     try:
         udata = pwd.getpwnam(username)
     except KeyError:
+        cmd = ['adduser', '-q', '--uid', str(uid),
+               '--no-create-home', '--home', home_dir,
+               '--gecos', '""', '--disabled-password', username]
         if os.path.isdir(home_dir):
-            cmd = ['adduser', '-q', '--uid', str(uid),
-                   '--no-create-home', '--home', home_dir,
-                   '--gecos', '""', '--disabled-password', username]
-        else:
-            cmd = ['adduser', '-q', '--uid', str(uid),
-                   '--home', home_dir,
-                   '--gecos', '""', '--disabled-password', username]
+            cmd.append('--no-create-home')
         print('Creating user: {}'.format(' '.join(cmd)))
         try:
             check_call(cmd)
