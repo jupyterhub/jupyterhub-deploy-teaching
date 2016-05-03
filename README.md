@@ -26,7 +26,7 @@ functional:
 - Use (optionally) https://letsencrypt.org/ for generating SSL certificates.
 - Does not use Docker or containers
 
-## Prequisites
+## Prerequisites
 
 To *deploy* this JupyterHub reference deployment, you should have:
 
