@@ -35,6 +35,8 @@ Secure your deployment
 
     $ openssl rand -hex 1024 > ./security/cookie_secret
 
+   For additional information, see the `cookie secret file <https://jupyterhub.readthedocs.io/en/latest/getting-started.html#cookie-secret>`_ section in the JupyterHub documentation.
+
 2. If you are using `Let's Encrypt <https://letsencrypt.org/>`_, skip this step.
    Otherwise, install your SSL private key :file:`./security/ssl.key` and
    certificate as :file:`./security/ssl.crt`.
