@@ -19,6 +19,7 @@
     creates: "{{ conda_prefix }}"
     executable: /bin/bash
 
+# add conda to path in two places, so it's always registered
 - name: add conda to PATH
   # add it to the front of bashrc, so it's even on noninteractive paths
   lineinfile:
@@ -26,6 +27,12 @@
     state: present
     line: "export PATH={{conda_prefix}}/bin:$PATH"
     insertbefore: BOF
+
+- name: add conda to login PATH
+  # add it to profile, so it's for all login shells
+  copy:
+    dest: /etc/profile.d/conda.sh
+    content: "export PATH={{conda_prefix}}/bin:$PATH"
 
 - name: add conda config
   copy:
