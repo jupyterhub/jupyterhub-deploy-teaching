@@ -27,6 +27,7 @@ conda_packages:
   - blaze
   - odo
 pip_packages:
+  - brewer2mpl
   - ggplot
   - ipythonblocks
   - plotly
