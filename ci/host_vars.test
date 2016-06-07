@@ -1,0 +1,84 @@
+---
+
+# Rename this files with the name of your host
+# and edit to customize its settings.
+
+# ---------------------------------------------------
+# Required
+# ---------------------------------------------------
+
+# The base directory of user accounts
+home_dir: /home
+
+# The users that should be jupyterhub admins
+jupyterhub_admin_users:
+  - minrk
+
+# The regular users able to use jupyterhub
+jupyterhub_users:
+  - minrk
+  - jhamrick
+
+# The secret token to use for accessing the proxy
+# Create using something like `openssl rand -hex 32`
+proxy_auth_token: 'also-secret'
+
+# nbgrader formgrade setup
+nbgrader_course_id: mycourse
+nbgrader_owner: jhamrick
+nbgrader_base_dir: "{{home_dir}}/{{nbgrader_owner}}/nbgrader/{{nbgrader_course_id}}"
+nbgrader_graders: 
+    - minrk
+    - jhamrick
+nbgrader_port: 5005
+
+# The API token formgrader will use to make requests of the Hub
+# Create using something like `openssl rand -hex 32`
+formgrader_hubapi_token: 'super-secret'
+
+
+# ---------------------------------------------------
+# Optional
+# ---------------------------------------------------
+
+# To mount local file systems populate this list.
+# This adds the entries to /etc/fstab, creates the mount point and mounts them.
+# Disks must be partitioned and formatted.
+local_mounts: []
+#   - name: /mountpoint1
+#     src: /dev/sdb1
+#     fstype: ext3
+#   - name: /mountpoint2
+#     src: /dev/sdc1
+#     fstype: ext3
+
+# If you want to use letsencrypt to generate SSL key/cert. Otherwise you MUST
+# put your key and cert into the security directory as security/ssl.crt and 
+# security/ssl.key
+use_letsencrypt: false
+letsencrypt_email: ''
+
+# If you want users to have /public_html/username directories set this to true
+nginx_public_html: false
+
+# Optionally set this to a list of the GitHub usernames whose public
+# GitHub SSH keys will be installed to allow then to ssh to the server
+# as root.
+github_usernames: ['minrk']
+
+# Optionally set this as your Google Analytics Tracking ID
+ga_tracking_id: ''
+
+# Optionally set this as your NewRelic license key
+newrelic_license_key: ''
+
+# Optionally change use_oauth to `true` and set the other values appropriately
+# to enable Github OAuth.
+use_oauth: true
+oauth_callback_url: https://test.fakedomain.jupyter.org/hub/oauth_callback
+oauth_client_id: '01234567890123456789'
+oauth_client_secret: '0123456789abcdef0123456789abcdef12345678'
+
+# Set this to the codename of your ubuntu version.
+# This is used to setup the R apt repositories which are based on this
+ubuntu_codename: wily

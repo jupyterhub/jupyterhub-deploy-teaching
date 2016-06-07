@@ -1,0 +1,8 @@
+#!/bin/bash
+set -e
+
+CI=$(dirname "$0")
+ROOT=$(dirname "$CI")
+DOMAIN=test.fakedomain.jupyter.org
+
+set -x
