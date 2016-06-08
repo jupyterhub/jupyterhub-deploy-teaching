@@ -18,6 +18,7 @@
   roles:
     - common
     - python
+    - { role: r, when: install_r_kernel }
     - { role: newrelic, when: newrelic_license_key is defined and newrelic_license_key != ''}
     - nginx
     - supervisor
