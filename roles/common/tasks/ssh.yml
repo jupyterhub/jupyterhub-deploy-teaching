@@ -3,6 +3,9 @@
 - name: directory to hold public keys
   file: state=directory path=/tmp/pubkeys mode=0755
 
+- name: /root/.ssh
+  file: state=directory path=/root/.ssh mode=0700
+
 - name: fetch public keys from github
   get_url: dest=/tmp/pubkeys/{{ item }}-pubkeys url=https://github.com/{{ item }}.keys force=yes
   with_items: github_usernames
