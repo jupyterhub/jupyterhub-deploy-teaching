@@ -11,4 +11,5 @@
     - saveusers
     - bash
     - jupyterhub
+    - { role: cull_idle, when: use_cull_idle_servers}
     - nbgrader

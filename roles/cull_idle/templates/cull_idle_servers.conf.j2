@@ -1,0 +1,12 @@
+# {{ ansible_managed }}
+
+[program:cull_idle_servers]
+environment=JPY_API_TOKEN='{{ cull_idle_servers_hubapi_token }}'
+command=/opt/conda/bin/python3 {{jupyterhub_srv_dir}}/cull_idle_servers.py --cull-every={{ cull_every }} --timeout={{ cull_timeout}}
+redirect_stderr=true
+stdout_logfile={{ jupyterhub_log_dir }}/cull_idle_servers.log
+autostart=true
+autorestart=false
+stopasgroup=true
+user=root
+directory={{jupyterhub_srv_dir}}

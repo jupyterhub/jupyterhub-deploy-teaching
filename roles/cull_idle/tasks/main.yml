@@ -1,0 +1,16 @@
+---
+
+- name: install cull_idle_servers dependencies
+  pip: name=python-dateutil state=present
+
+- name: install cull_idle_servers.py into {{jupyterhub_srv_dir}}
+  copy: src=cull_idle_servers.py dest={{jupyterhub_srv_dir}} owner=root group=root mode=0700
+
+- name: install supervisor config for cull_idle_servers
+  template: src=cull_idle_servers.conf.j2 dest=/etc/supervisor/conf.d/cull_idle_servers.conf owner=root group=root mode=0600
+
+- name: load cull_idle_servers supervisor config
+  supervisorctl: name=cull_idle_servers state=present
+
+- name: restart cull_idle_servers with supervisor
+  supervisorctl: name=cull_idle_servers state=restarted

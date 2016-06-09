@@ -38,8 +38,14 @@ c.Authenticator.whitelist = {
 c.Authenticator.whitelist = set()
 {% endif %}
 
+c.JupyterHub.api_tokens = {}
 {% if formgrader_hubapi_token %}
-c.JupyterHub.api_tokens = {
-    '{{formgrader_hubapi_token}}': '{{nbgrader_owner}}',
-}
+c.JupyterHub.api_tokens.update({
+    '{{formgrader_hubapi_token}}': '{{nbgrader_owner}}'
+})
+{% endif %}
+{% if cull_idle_servers_hubapi_token %}
+c.JupyterHub.api_tokens.update({
+    '{{cull_idle_servers_hubapi_token}}': '{{cull_idle_servers_owner}}'
+})
 {% endif %}

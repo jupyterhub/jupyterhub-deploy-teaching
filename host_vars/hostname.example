@@ -68,6 +68,17 @@ nginx_public_html: false
 # as root.
 github_usernames: ['instructor', 'grader']
 
+# Optionally cull idle single user servers
+use_cull_idle_servers: false
+# The username and API token for culling idle servers
+# Create using something like `openssl rand -hex 32`
+cull_idle_servers_owner: instructor
+cull_idle_servers_hubapi_token: ''
+# The interval (in seconds) for checking for idle servers to cull
+cull_every: 600
+# The idle timeout (in seconds)
+cull_timeout: 3600
+
 # Optionally set this as your Google Analytics Tracking ID
 ga_tracking_id: ''
 
