@@ -19,6 +19,12 @@ Prerequisites
   * `Let's Encrypt <https://letsencrypt.org/>`_
   * obtain a trusted SSL certificate and key for the server at that FQDN.
 
+- Checkout the latest version of the repository including the ``ansible-conda`` submodule::
+
+    $ git clone https://github.com/jupyterhub/jupyterhub-deploy-teaching.git
+    $ git submodule init
+    $ git submodule update
+
 Create the hosts group
 ----------------------
 
