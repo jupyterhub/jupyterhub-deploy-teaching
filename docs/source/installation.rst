@@ -12,8 +12,6 @@ Prerequisites
 
 - Partition and format any local disks you want to mount.
 
-- Verify the server's hostname matches the fully qualified domain name (FQDN).
-
 - Verify a valid DNS entry for the server.
 
 - Choose an SSL certificate source. Use either of these options:
