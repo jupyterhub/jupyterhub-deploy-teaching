@@ -6,6 +6,8 @@ Prerequisites
 
 - Start a server running latest Ubuntu version.
 
+- Make sure the server has Python 2 installed, e.g. in Ubuntu `sudo apt-get install python2.7`
+
 - Enable password-less SSH access for :command:`root` user.
 
 - Partition and format any local disks you want to mount.
