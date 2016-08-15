@@ -31,6 +31,8 @@
     creates: /etc/letsencrypt/live/{{inventory_hostname}}/
   become: true
   when: use_letsencrypt and letsencrypt_cert.stat.exists == False
+  environment:
+      PATH: "/opt/conda/bin:{{ ansible_env.PATH }}"
 
 # ---------------------------------------------------
 # Or, install existing SSL cert/key
@@ -60,6 +62,8 @@
 - name: find notebook static directory
   command: python3 -c 'import notebook; import os; print(os.path.join(notebook.__path__[0], "static"));'
   register: notebook_static_directory
+  environment:
+      PATH: "/opt/conda/bin:{{ ansible_env.PATH }}"
 
 - name: install nginx.conf
   template: src=nginx.conf.j2 dest=/etc/nginx/nginx.conf owner=root group=root mode=0644 backup=yes

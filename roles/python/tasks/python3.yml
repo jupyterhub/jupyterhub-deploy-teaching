@@ -4,8 +4,12 @@
   conda: name={{item}} state=present
   become: true
   with_items: conda_packages
+  environment:
+    PATH: "/opt/conda/bin:{{ ansible_env.PATH }}"
 
 - name: user pip packages
   pip: name={{item}} state=present
   become: true
   with_items: pip_packages
+  environment:
+    PATH: "/opt/conda/bin:{{ ansible_env.PATH }}"
