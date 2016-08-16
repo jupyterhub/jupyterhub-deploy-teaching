@@ -5,11 +5,7 @@
   become: true
   with_items:
       - bash_kernel
-  environment:
-    PATH: "/opt/conda/bin:{{ ansible_env.PATH }}"
 
 - name: install bash_kernel
   command: python3 -m bash_kernel.install
   become: true
-  environment:
-    PATH: "/opt/conda/bin:{{ ansible_env.PATH }}"

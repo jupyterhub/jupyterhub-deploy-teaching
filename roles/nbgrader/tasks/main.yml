@@ -6,8 +6,6 @@
   with_items:
     # - nbgrader
     - git+https://github.com/jupyter/nbgrader.git@master#egg=nbgrader
-  environment:
-    PATH: "/opt/conda/bin:{{ ansible_env.PATH }}"
 
 - name: make sure /var/log/nbgrader exists
   file: path={{nbgrader_log_dir}}/ state={{item}} owner=root group=root mode=0755
@@ -26,5 +24,3 @@
 - name: install the nbgrader extension
   command: nbgrader extension install
   become: true
-  environment:
-    PATH: "/opt/conda/bin:{{ ansible_env.PATH }}"

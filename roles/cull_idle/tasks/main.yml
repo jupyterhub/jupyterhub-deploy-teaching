@@ -2,8 +2,6 @@
 
 - name: install cull_idle_servers dependencies
   pip: name=python-dateutil state=present
-  environment:
-    PATH: "/opt/conda/bin:{{ ansible_env.PATH }}"
 
 - name: install cull_idle_servers.py into {{jupyterhub_srv_dir}}
   copy: src=cull_idle_servers.py dest={{jupyterhub_srv_dir}} owner=root group=root mode=0700

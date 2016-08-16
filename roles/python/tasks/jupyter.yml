@@ -10,19 +10,13 @@
     - ipykernel
     - nbconvert
     - pandoc
-  environment:
-      PATH: "{{ ansible_env.PATH }}:/opt/conda/bin"
 
 - name: pip install non-conda deps
   pip: name={{item}} state=present
   become: true
   with_items:
     - ipywidgets==5
-  environment:
-      PATH: "{{ ansible_env.PATH }}:/opt/conda/bin"
 
 - name: install python3 kernelspec
   command: python3 -m IPython kernel install
   become: true
-  environment:
-    PATH: "/opt/conda/bin:{{ ansible_env.PATH }}"

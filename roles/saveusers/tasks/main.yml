@@ -10,5 +10,3 @@
   command: python3 create_users.py chdir={{home_dir}}
   become: true
   when: use_oauth
-  environment:
-    PATH: "/opt/conda/bin:{{ ansible_env.PATH }}"

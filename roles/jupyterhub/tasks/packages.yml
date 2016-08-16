@@ -6,8 +6,6 @@
   with_items:
     - configurable-http-proxy
     - sqlalchemy
-  environment:
-      PATH: "/opt/conda/bin:{{ ansible_env.PATH }}"
 
 - name: pip install jupyterhub
   pip: name={{item}} state=present editable=false
@@ -15,5 +13,3 @@
   with_items:
     - jupyterhub==0.6
     - oauthenticator==0.3
-  environment:
-      PATH: "/opt/conda/bin:{{ ansible_env.PATH }}"
