@@ -12,3 +12,5 @@
     - jupyterhub
     - { role: cull_idle, when: use_cull_idle_servers}
     - nbgrader
+  environment:
+      PATH: "/opt/conda/bin:{{ (ansible_env|default({})).PATH|default('') }}"
