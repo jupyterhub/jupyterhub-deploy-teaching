@@ -1,5 +1,9 @@
 ---
-    
+- hosts: jupyterhub_hosts
+  tasks:
+    - command: echo "$PATH"
+      register: default_path
+
 - hosts: jupyterhub_hosts
   roles:
     - common
@@ -13,4 +17,4 @@
     - { role: cull_idle, when: use_cull_idle_servers}
     - nbgrader
   environment:
-      PATH: "/opt/conda/bin:{{ (ansible_env|default({})).PATH|default('') }}"
+      PATH: "/opt/conda/bin:{{ default_path.stdout }}"
