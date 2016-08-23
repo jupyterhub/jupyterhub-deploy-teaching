@@ -19,9 +19,7 @@ Prerequisites
 
 - Checkout the latest version of the repository including the ``ansible-conda`` submodule::
 
-    $ git clone https://github.com/jupyterhub/jupyterhub-deploy-teaching.git
-    $ git submodule init
-    $ git submodule update
+    $ git clone --recursive https://github.com/jupyterhub/jupyterhub-deploy-teaching.git
 
 Create the hosts group
 ----------------------
