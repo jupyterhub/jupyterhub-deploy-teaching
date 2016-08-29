@@ -38,6 +38,8 @@ nbgrader_port: 5005
 # Create using something like `openssl rand -hex 32`
 formgrader_hubapi_token: ''
 
+# Path of the Python 2.7 interpreter on the remote server
+ansible_python_interpreter: '/usr/bin/python2.7'
 
 # ---------------------------------------------------
 # Optional

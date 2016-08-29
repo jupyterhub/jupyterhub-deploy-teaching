@@ -53,7 +53,7 @@ http {
 
 {% if nginx_public_html %}
         location ~ ^/public_html/([a-zA-Z0-9\-_%]*)(/.*)?$ {
-            alias /nbhome/$1/public_html$2;
+            alias {{ home_dir }}/$1/public_html$2;
             index  index.html index.htm Index.html;
             autoindex on;
         }

@@ -1,7 +1,20 @@
 ---
-    
+
+# Make sure Python 2.7 is installed
 - hosts: jupyterhub_hosts
-  remote_user: root
+  gather_facts: False
+  tasks:
+    - name: apt-get update
+      raw: apt-get update -qq
+    - name: Install python 2.7
+      raw: apt-get install -qq python2.7
+
+- hosts: jupyterhub_hosts
+  tasks:
+    - command: echo "$PATH"
+      register: default_path
+
+- hosts: jupyterhub_hosts
   roles:
     - common
     - python
@@ -13,3 +26,5 @@
     - jupyterhub
     - { role: cull_idle, when: use_cull_idle_servers}
     - nbgrader
+  environment:
+      PATH: "/opt/conda/bin:{{ default_path.stdout }}"

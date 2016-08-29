@@ -6,11 +6,9 @@ Prerequisites
 
 - Start a server running latest Ubuntu version.
 
-- Enable password-less SSH access for :command:`root` user.
+- Enable password-less SSH access for :command:`ubuntu` user.
 
 - Partition and format any local disks you want to mount.
-
-- Verify the server's hostname matches the fully qualified domain name (FQDN).
 
 - Verify a valid DNS entry for the server.
 
@@ -18,6 +16,10 @@ Prerequisites
 
   * `Let's Encrypt <https://letsencrypt.org/>`_
   * obtain a trusted SSL certificate and key for the server at that FQDN.
+
+- Checkout the latest version of the repository including the ``ansible-conda`` submodule::
+
+    $ git clone --recursive https://github.com/jupyterhub/jupyterhub-deploy-teaching.git
 
 Create the hosts group
 ----------------------
