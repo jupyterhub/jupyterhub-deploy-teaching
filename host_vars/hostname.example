@@ -21,6 +21,12 @@ jupyterhub_users:
   - student1
   - student2
 
+# Install r kernel
+install_r_kernel: false
+
+# Install bash kernel
+install_bash_kernel: true
+
 # The secret token to use for accessing the proxy
 # Create using something like `openssl rand -hex 32`
 proxy_auth_token: ''

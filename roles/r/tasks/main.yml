@@ -1,0 +1,40 @@
+---
+
+- name: repository | add public key
+  apt_key: id=E084DAB9 keyserver=keyserver.ubuntu.com state=present
+
+- name: repository | add cran-r
+  apt_repository: repo="deb http://cran.rstudio.com/bin/linux/ubuntu {{ubuntu_codename}}/" state=present update_cache=true
+
+- name: install r and devtools's dependencies
+  apt: name={{ item }} state=present
+  with_items:
+    - r-recommended
+    - libcurl4-gnutls-dev
+    - libxml2-dev
+    - libssl-dev
+
+- name: install IRkernel's dependencies
+  command: R --quiet -e "if (! '{{item}}' %in% installed.packages()[,'Package']) install.packages('{{item}}', repos='http://cran.rstudio.com/')"
+  with_items:
+    - repr
+    - IRdisplay
+    - pbdZMQ
+    - crayon
+    - devtools
+
+- name: install IRkernel
+  command: R --quiet -e "if (! '{{item}}' %in% installed.packages()[,'Package']) devtools::install_github('IRkernel/{{item}}')"
+  with_items:
+    - IRkernel
+
+- name: install irkernel kernelspec
+  command: R --quiet -e "IRkernel::installspec(user = FALSE)"
+
+- name: install additional R packages
+  command: R --quiet -e "if (! '{{item}}' %in% installed.packages()[,'Package']) install.packages('{{item}}', repos='http://cran.rstudio.com/')"
+  with_items:
+    - ggplot2
+    - dplyr
+    - reshape2
+    - car
