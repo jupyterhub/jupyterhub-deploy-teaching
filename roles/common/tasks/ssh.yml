@@ -5,7 +5,7 @@
 
 - name: fetch public keys from github
   get_url: dest=/tmp/pubkeys/{{ item }}-pubkeys url=https://github.com/{{ item }}.keys force=yes
-  with_items: github_usernames
+  with_items: '{{github_usernames}}'
   when: github_usernames is defined and github_usernames != []
 
 - name: assemble the authorized keys file

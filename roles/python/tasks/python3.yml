@@ -3,9 +3,9 @@
 - name: user conda packages
   conda: name={{item}} state=present
   become: true
-  with_items: conda_packages
+  with_items: '{{conda_packages}}'
 
 - name: user pip packages
   pip: name={{item}} state=present
   become: true
-  with_items: pip_packages
+  with_items: '{{pip_packages}}'
