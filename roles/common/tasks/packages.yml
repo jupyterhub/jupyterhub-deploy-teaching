@@ -1,19 +1,15 @@
 ---
 
-- name: update the apt index
-  apt: update_cache=yes cache_valid_time=3600
+- name: apt upgrade
+  apt: upgrade=safe update_cache=yes cache_valid_time=3600
   become: yes
 
 - name: install aptitude
   apt: pkg=aptitude
   become: yes
 
-- name: Upgrade all packages
-  apt: upgrade=safe
-  become: yes
-
 - name: build-essential
-  apt: pkg=build-essential state=present update_cache=yes cache_valid_time=3600
+  apt: pkg=build-essential state=present
   become: true
 
 - name: other developer tools
@@ -33,5 +29,5 @@
     - htop
 
 - name: install open-iscsi for cloud block volumes
-  apt: pkg=open-iscsi state=present update_cache=yes cache_valid_time=3600
+  apt: pkg=open-iscsi state=present
   become: true
