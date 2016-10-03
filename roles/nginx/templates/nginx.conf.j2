@@ -30,9 +30,14 @@ http {
 
 
         ssl on;
-{% if use_letsencrypt %}		
+{% if use_letsencrypt %}
         ssl_certificate {{ letsencrypt_ssl_cert_path }};
         ssl_certificate_key {{ letsencrypt_ssl_key_path }};
+
+        # letsencrypt renewal authorization area
+        location /.well-known/ {
+            alias /etc/letsencrypt/webroot/.well-known/;
+        }
 {% else %}
         ssl_certificate {{ ssl_cert_path }};
         ssl_certificate_key {{ ssl_key_path }};
