@@ -5,12 +5,12 @@
   conda: name={{item}} state=present
   become: true
   with_items:
-    - notebook==4.2
+    - notebook=4.2
     - ipyparallel
     - ipykernel
     - nbconvert
     - pandoc
-    - ipywidgets==5
+    - ipywidgets=5
 
 - name: install python3 kernelspec
   command: python3 -m IPython kernel install
