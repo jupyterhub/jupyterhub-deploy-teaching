@@ -10,11 +10,6 @@
     - ipykernel
     - nbconvert
     - pandoc
-
-- name: pip install non-conda deps
-  pip: name={{item}} state=present
-  become: true
-  with_items:
     - ipywidgets==5
 
 - name: install python3 kernelspec
