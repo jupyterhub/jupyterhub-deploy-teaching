@@ -4,7 +4,7 @@ Using nbgrader
 With the reference deployment, instructors can start to use nbgrader.
 This section contains a rough sketch
 of what that looks like. For full details see the `nbgrader
-documentation <http://nbgrader.readthedocs.org/en/latest/>`_.
+documentation <http://nbgrader.readthedocs.io/en/latest/>`_.
 
 Preparing class assignments - Instructor
 ----------------------------------------
@@ -49,7 +49,7 @@ Copy notebooks into the assignment directory::
 Create a student version of an assignment
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 These notebooks should be prepared using the nbgrader
-"Create Assignment Celltoolbar". Now create the assignment::
+"Create Assignment Cell toolbar". Now create the assignment::
 
     $ nbgrader assign <assignment>
 
@@ -120,4 +120,3 @@ Some other things you can do with nbgrader:
   student or notebook.
 * Collect a single assignment multiple times and regrade all or parts
   selectively.
-
