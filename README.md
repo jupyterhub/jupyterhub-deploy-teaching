@@ -35,7 +35,7 @@ To *deploy* this JupyterHub reference deployment, you should have:
 - A formatted and mounted directory to store user home directories
 - A valid DNS name
 - SSL certificate
-- Ansible 2.0+ installed for JupyterHub configuration (`pip install ansible>=2.0`)
+- Ansible 2.1+ installed for JupyterHub configuration (`pip install "ansible>=2.1"`)
 
 For *administration* of the server, you should also:
 
