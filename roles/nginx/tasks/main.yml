@@ -32,12 +32,6 @@
     mode: 755
   when: use_letsencrypt
 
-- name: skip pycparser wheel (letsencrypt workaround)
-  # workaround https://community.letsencrypt.org/t/certbot-auto-fails-while-setting-up-virtual-environment-complains-about-package-hashes/20529
-  command: sed -i "s@pycparser==2.14\ \\\@pycparser==2.14 --no-binary pycparser\\\@" /usr/local/bin/certbot-auto
-  become: true
-  when: use_letsencrypt
-
 - name: SSL credentials with certbot
   command: /usr/local/bin/certbot-auto certonly --agree-tos --standalone -m {{ letsencrypt_email }} -d {{ inventory_hostname }} creates={{ letsencrypt_ssl_cert_path }}
   become: true
