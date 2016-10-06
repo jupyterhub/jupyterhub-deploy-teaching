@@ -1,0 +1,5 @@
+sphinx>=1.4.6
+sphinx_rtd_theme
+recommonmark
+pyenchant
+sphinxcontrib-spelling
