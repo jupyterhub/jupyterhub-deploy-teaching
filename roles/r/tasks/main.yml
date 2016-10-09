@@ -15,7 +15,8 @@
     - libssl-dev
 
 - name: install IRkernel's dependencies
-  command: R --quiet -e "if (! '{{item}}' %in% installed.packages()[,'Package']) install.packages('{{item}}', repos='http://cran.rstudio.com/')"
+  command: R --quiet -e "install.packages('{{item}}', repos='http://cran.rstudio.com/')"
+  # command: R --quiet -e "if (! '{{item}}' %in% installed.packages()[,'Package']) install.packages('{{item}}', repos='http://cran.rstudio.com/')"
   with_items:
     - repr
     - IRdisplay
@@ -28,7 +29,8 @@
     - stringi
 
 - name: install IRkernel
-  command: R --quiet -e "if (! '{{item}}' %in% installed.packages()[,'Package']) devtools::install_github('IRkernel/{{item}}')"
+  command: R --quiet -e "devtools::install_github('IRkernel/{{item}}')"
+  # command: R --quiet -e "if (! '{{item}}' %in% installed.packages()[,'Package']) devtools::install_github('IRkernel/{{item}}')"
   with_items:
     - IRkernel
 
@@ -36,7 +38,8 @@
   command: R --quiet -e "IRkernel::installspec(user = FALSE)"
 
 - name: install additional R packages
-  command: R --quiet -e "if (! '{{item}}' %in% installed.packages()[,'Package']) install.packages('{{item}}', repos='http://cran.rstudio.com/')"
+  command: R --quiet -e "install.packages('{{item}}', repos='http://cran.rstudio.com/')"
+  # command: R --quiet -e "if (! '{{item}}' %in% installed.packages()[,'Package']) install.packages('{{item}}', repos='http://cran.rstudio.com/')"
   with_items:
     - car
     - ggplot2
