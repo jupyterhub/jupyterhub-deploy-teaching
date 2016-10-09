@@ -1,18 +1,14 @@
 ---
 
-# Make sure Python 2.7 is installed
 - hosts: jupyterhub_hosts
-  gather_facts: False
   tasks:
-    - name: apt-get update
-      raw: apt-get update -qq
-    - name: Install python 2.7
-      raw: apt-get install -qq python2.7
+    - assert:
+        that: (ansible_version.major, ansible_version.minor) >= (2, 1)
+        msg: require ansible >= 2.1, found {{ansible_version.full}}
 
-- hosts: jupyterhub_hosts
-  tasks:
     - command: echo "$PATH"
       register: default_path
+
 
 - hosts: jupyterhub_hosts
   roles:

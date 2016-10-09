@@ -16,21 +16,31 @@
   become: true
   when: use_letsencrypt
 
-- stat: path=/etc/letsencrypt/live/{{inventory_hostname}}/cert.pem
-  register: letsencrypt_cert
-
-- name: clone or update the latest letsencrypt repo
-  git: repo=https://github.com/letsencrypt/letsencrypt.git dest=/tmp/letsencrypt force=yes
+- name: set apt-yes default (needed for certbot)
+  lineinfile:
+    dest: /etc/apt/apt.conf.d/99-apt-yes
+    state: present
+    line: 'APT::Get::Assume-Yes "true";'
+    create: yes
   become: true
-  when: use_letsencrypt and letsencrypt_cert.stat.exists == False
+  when: use_letsencrypt
 
-- name: run letsencrypt to generate SSL certs
-  command: ./letsencrypt-auto certonly --standalone --agree-tos -m {{letsencrypt_email}} -d {{inventory_hostname}}
-  args:
-    chdir: /tmp/letsencrypt
-    creates: /etc/letsencrypt/live/{{inventory_hostname}}/
+- name: install certbot (letsencrypt)
+  get_url:
+    url: https://dl.eff.org/certbot-auto
+    dest: /usr/local/bin/certbot-auto
+    mode: 755
+  when: use_letsencrypt
+
+- name: SSL credentials with certbot
+  command: /usr/local/bin/certbot-auto certonly --agree-tos --standalone -m {{ letsencrypt_email }} -d {{ inventory_hostname }} creates={{ letsencrypt_ssl_cert_path }}
   become: true
-  when: use_letsencrypt and letsencrypt_cert.stat.exists == False
+  when: use_letsencrypt
+
+- name: Setup letsencrypt renewal with cron
+  copy: src=letsencrypt-renew dest=/etc/cron.daily/letsencrypt-renew mode=0755
+  become: true
+  when: use_letsencrypt
 
 # ---------------------------------------------------
 # Or, install existing SSL cert/key
