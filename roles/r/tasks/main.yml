@@ -19,9 +19,13 @@
   with_items:
     - repr
     - IRdisplay
-    - pbdZMQ
+    - evaluate
     - crayon
+    - pbdZMQ
     - devtools
+    - uuid
+    - digest
+    - stringi
 
 - name: install IRkernel
   command: R --quiet -e "if (! '{{item}}' %in% installed.packages()[,'Package']) devtools::install_github('IRkernel/{{item}}')"
