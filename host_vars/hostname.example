@@ -32,6 +32,7 @@ install_bash_kernel: true
 proxy_auth_token: ''
 
 # nbgrader formgrade setup
+use_nbgrader: false
 nbgrader_course_id: mycourse
 nbgrader_owner: instructor
 nbgrader_base_dir: "{{home_dir}}/{{nbgrader_owner}}/nbgrader/{{nbgrader_course_id}}"

@@ -81,3 +81,6 @@
   service: name=nginx state=started enabled=yes
   become: true
 
+- name: reload nginx
+  service: name=nginx state=reloaded
+  become: true
