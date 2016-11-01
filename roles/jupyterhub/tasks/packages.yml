@@ -11,5 +11,5 @@
   pip: name={{item}} state=present editable=false
   become: true
   with_items:
-    - jupyterhub==0.6
-    - oauthenticator==0.3
+    - git+https://github.com/jupyterhub/jupyterhub#egg=jupyterhub
+    - oauthenticator==0.5
