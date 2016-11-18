@@ -71,7 +71,7 @@ def cull_idle(url, api_token, timeout):
         app_log.debug("Finished culling %s", name)
 
 if __name__ == '__main__':
-    define('url', default=os.environ.get('JUPYTERHUB_API_URL'), help="The JupyterHub API URL")
+    define('url', default=os.environ.get('JUPYTERHUB_API_URL') or 'http://127.0.0.1:8081/hub/api', help="The JupyterHub API URL")
     define('timeout', default=600, help="The idle timeout (in seconds)")
     define('cull_every', default=0, help="The interval (in seconds) for checking for idle servers to cull")
     
