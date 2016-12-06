@@ -43,7 +43,7 @@ c.JupyterHub.services = [
     {
         'name': 'formgrader',
         'admin': True,
-        'token': '{{formgrader_hubapi_token}}',
+        'api_token': '{{formgrader_hubapi_token}}',
         'url': 'http://127.0.0.1:{{nbgrader_port}}',
     },
 {% endif %}
@@ -51,7 +51,7 @@ c.JupyterHub.services = [
     {
         'name': 'cull_idle_servers',
         'admin': True,
-        'token': '{{cull_idle_servers_hubapi_token}}',
+        'api_token': '{{cull_idle_servers_hubapi_token}}',
     },
 {% endif %}
 ]
