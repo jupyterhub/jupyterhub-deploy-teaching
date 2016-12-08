@@ -1,4 +1,5 @@
 ---
+# The playbook deploys JupyterHub with a sensible default configuration
 
 - hosts: jupyterhub_hosts
   tasks:
