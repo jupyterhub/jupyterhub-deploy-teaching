@@ -1,0 +1,13 @@
+# The `hosts` inventory file lists the JupyterHub servers managed by Ansible
+
+# This provides an inventory of host servers used for JupyterHub
+# Edit the fqdn (fully qualified domain name) for your hub server
+# For example:
+#
+# [jupyterhub_hosts]
+# www.example1.com
+#
+# Save file as `hosts` (without the file type suffix) when done editing.
+
+[jupyterhub_hosts]
+fqdn.goes.here
