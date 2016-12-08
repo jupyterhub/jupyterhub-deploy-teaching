@@ -1,8 +1,8 @@
 ---
 
-# This is separate because it has to be run after the instructor's
-# user account is setup.
- 
+# This playbook is deployed separately and after `deploy.yml` since the
+# instructor's user account must be set up before deploying formgrader
+
 - hosts: jupyterhub_hosts
   roles:
     - formgrade
