@@ -1,5 +1,6 @@
 ---
-# The playbook deploys JupyterHub with a sensible default configuration
+# The playbook deploys JupyterHub.
+# This file would be equivalent to a `sites.yml` file in Ansible terms.
 
 - hosts: jupyterhub_hosts
   tasks:
