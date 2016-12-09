@@ -4,7 +4,7 @@
   apt: pkg=supervisor state=present
   become: true
 
-- name: make sure supervisord is running
+- name: check if supervisord is running
   service: name=supervisor enabled=yes state=started
   become: true
 
