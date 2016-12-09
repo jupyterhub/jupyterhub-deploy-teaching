@@ -82,7 +82,16 @@ nginx_public_html: false
 # Public GitHub SSH keys will be installed to allow the user to ssh into the server as root.
 github_usernames: ['instructor', 'grader']
 
-# Cull idle servers (Optional)
+# Oauth (Optional - use oauth default: false)
+# Change `use_oauth` to `true` and set the other values appropriately
+# to enable GitHub OAuth.
+# If left as default `false`, PAM authentication will be used.
+use_oauth: false
+oauth_callback_url: https://mydomain.org/hub/oauth_callback
+oauth_client_id: ''
+oauth_client_secret: ''
+
+# Cull idle servers (Optional default: false)
 # Enable or disable cull idle single user servers
 use_cull_idle_servers: false
 # The username for culling idle servers. MUST be a user of JupyterHub,
@@ -100,15 +109,6 @@ ga_tracking_id: ''
 
 # Set NewRelic license key (Optional)
 newrelic_license_key: ''
-
-# Oauth (Optional - use oauth default: false)
-# Change `use_oauth` to `true` and set the other values appropriately
-# to enable GitHub OAuth.
-# If left as default `false`, PAM authentication will be used.
-use_oauth: false
-oauth_callback_url: https://mydomain.org/hub/oauth_callback
-oauth_client_id: ''
-oauth_client_secret: ''
 
 # Set user-friendly codename of installed ubuntu version. (Optional - Needed when using R)
 # This codename is used to setup the R apt repositories
