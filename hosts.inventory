@@ -5,7 +5,7 @@
 # For example:
 #
 # [jupyterhub_hosts]
-# www.example1.com
+# www.example.com
 #
 # Save file as `hosts` (without the file type suffix) when done editing.
 
