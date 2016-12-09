@@ -23,10 +23,10 @@ jupyterhub_users:
   - student1
   - student2
 
-# R kernel
+# R kernel installation (default: false)
 install_r_kernel: false
 
-# bash kernel
+# bash kernel installation
 install_bash_kernel: true
 
 # Secret token for proxy access
@@ -34,7 +34,7 @@ install_bash_kernel: true
 # enter between quotation marks below
 proxy_auth_token: ''
 
-# nbgrader formgrade settings
+# nbgrader and formgrade settings (use_nbgrader default: false)
 use_nbgrader: false
 nbgrader_course_id: mycourse
 nbgrader_owner: instructor
@@ -50,6 +50,7 @@ nbgrader_port: 5005
 formgrader_hubapi_token: ''
 
 # Path of the Python 2.7 interpreter on the remote server
+# Note: Ansible requires Python 2.7 for provisioning so the path must be set
 ansible_python_interpreter: '/usr/bin/python2.7'
 
 # ---------------------------------------------------
@@ -67,9 +68,9 @@ local_mounts: []
 #     src: /dev/sdc1
 #     fstype: ext3
 
-# SSL settings
+# SSL using letsencrypt (optional - use letsencrypt default: false)
 # If using letsencrypt to generate SSL key/cert, set `use_letsencrypt` to `true`
-# Otherwise, you MUST put your key and cert into the security directory as
+# Otherwise if not using letsencrypt for SSL, you MUST put your key and cert into the security directory as
 # `security/ssl.crt` and `security/ssl.key`
 use_letsencrypt: false
 letsencrypt_email: ''
@@ -77,8 +78,8 @@ letsencrypt_email: ''
 # If users should have `/public_html/username` directories, set this to `true` (Optional)
 nginx_public_html: false
 
-# Set this to a list of the GitHub usernames whose public GitHub SSH keys
-# will be installed to allow the user to ssh into the server as root.
+# List of the GitHub usernames who will receive root access via ssh
+# Public GitHub SSH keys will be installed to allow the user to ssh into the server as root.
 github_usernames: ['instructor', 'grader']
 
 # Cull idle servers (Optional)
@@ -100,14 +101,15 @@ ga_tracking_id: ''
 # Set NewRelic license key (Optional)
 newrelic_license_key: ''
 
-# Oauth (Optional)
+# Oauth (Optional - use oauth default: false)
 # Change `use_oauth` to `true` and set the other values appropriately
 # to enable GitHub OAuth.
+# If left as default `false`, PAM authentication will be used.
 use_oauth: false
 oauth_callback_url: https://mydomain.org/hub/oauth_callback
 oauth_client_id: ''
 oauth_client_secret: ''
 
-# Set user-friendly codename of installed ubuntu version. (Optional)
+# Set user-friendly codename of installed ubuntu version. (Optional - Needed when using R)
 # This codename is used to setup the R apt repositories
 ubuntu_codename: wily
