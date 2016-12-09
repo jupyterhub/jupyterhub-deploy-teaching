@@ -1,8 +1,9 @@
 ---
 
-# An example hostname file
-# Rename this file with the name of your host and edit the file to customize
-# settings.
+# An example `hostname` file
+#
+# Edit this file to customize settings for a particular host.
+# Save as `hostname` without the `.example` suffix.
 
 # ---------------------------------------------------
 # Required settings
