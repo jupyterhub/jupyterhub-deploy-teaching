@@ -7,6 +7,6 @@
   with_items:
       - bash_kernel
 
-- name: install bash_kernel
+- name: install bash_kernel for jupyter and ipython
   command: python3 -m bash_kernel.install
   become: true
