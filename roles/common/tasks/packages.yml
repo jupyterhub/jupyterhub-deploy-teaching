@@ -1,23 +1,26 @@
 ---
 
-- name: apt update
+# This playbook installs common packages used on a UNIX/Linux system
+
+- name: update apt
   apt: update_cache=yes cache_valid_time=3600
   become: yes
 
+# required to upgrade apt
 - name: install aptitude
   apt: pkg=aptitude
   become: yes
 
-# upgrade requires aptitude
-- name: apt upgrade
+# upgrade requires aptitude be installed
+- name: upgrade apt
   apt: upgrade=safe
   become: yes
 
-- name: build-essential
+- name: install build-essential tools
   apt: pkg=build-essential state=present
   become: true
 
-- name: other developer tools
+- name: install other developer tools
   apt: pkg={{item}} state=present
   become: true
   with_items:
