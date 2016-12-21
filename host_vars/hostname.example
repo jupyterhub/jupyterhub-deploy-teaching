@@ -58,7 +58,7 @@ ansible_python_interpreter: '/usr/bin/python2.7'
 # ---------------------------------------------------
 
 # To mount local file systems populate this list. (Optional)
-# This adds add the entries to /etc/fstab, creates the mount points,
+# This adds the entries to /etc/fstab, creates the mount points,
 # and mounts them. Note: Disks must be partitioned and formatted.
 local_mounts: []
 #   - name: /mountpoint1
@@ -94,8 +94,8 @@ oauth_client_secret: ''
 # Cull idle servers (Optional default: false)
 # Enable or disable cull idle single user servers
 use_cull_idle_servers: false
-# The username for culling idle servers. MUST be a user of JupyterHub,
-# as root won't work unless root can access JupyterHub
+# The username for culling idle servers. MUST be a user of JupyterHub.
+# For example, root won't work unless root can access JupyterHub.
 cull_idle_servers_owner: instructor
 # The API token for culling, create using something like `openssl rand -hex 32`
 cull_idle_servers_hubapi_token: ''
