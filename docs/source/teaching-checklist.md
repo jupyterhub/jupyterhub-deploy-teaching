@@ -66,7 +66,7 @@ Documentation for JupyterHub: https://jupyterhub.readthedocs.io
 ## 7. Add optional services
 
 - [ ] **Monitoring:** New Relic
-- [ ] **Analytics** Google Analytics
+- [ ] **Analytics:** Google Analytics
 - [ ] **Assignment distribution and collection:** nbgrader
 - [ ] **Grading:** nbgrader
 
