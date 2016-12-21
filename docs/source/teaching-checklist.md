@@ -18,7 +18,6 @@ Documentation for JupyterHub: https://jupyterhub.readthedocs.io
 - [ ] **SSH:** enable password-less SSH for `ubuntu` user
 - [ ] **Local disks:** partition and format
 - [ ] **DNS (domain name):** valid entry for server
-- [ ] **SSL certificate/key:** obtain via let's encrypt or trusted source
 
 ## 2. Install JupyterHub source
 
@@ -52,8 +51,8 @@ Documentation for JupyterHub: https://jupyterhub.readthedocs.io
 
 ## 5. Configure admins
 
-- [ ] List?
-- [ ] Public SSH keys
+- [ ] List of admins is configured in `jupyterhub_admin_users` in the config
+  file. Public SSH keys will be retrieved from GitHub.
 
 ## 6. Configure users
 
@@ -61,11 +60,13 @@ Documentation for JupyterHub: https://jupyterhub.readthedocs.io
   modules)](https://en.wikipedia.org/wiki/Linux_PAM, you will need to
   manually create users using adduser: `adduser --gecos "" username`.
 
-- [ ] If using [GitHub OAuth](https://developer.github.com/v3/oauth/):
+- [ ] If using [GitHub OAuth](https://developer.github.com/v3/oauth/), add
+  usernames to `jupyterhub_users` list.
 
 ## 7. Add optional services
 
 - [ ] **Monitoring:** New Relic
+- [ ] **Analytics** Google Analytics
 - [ ] **Assignment distribution and collection:** nbgrader
 - [ ] **Grading:** nbgrader
 
@@ -85,11 +86,5 @@ Documentation for JupyterHub: https://jupyterhub.readthedocs.io
     $ ssh root@{hostname}
     ```
     substituting your hostname for {hostname}. For example, ``ssh root@jupyter.org``.
-
-- [ ] **supervisor:** Reload.
-
-    ```bash
-    $ supervisorctl reload
-    ```
 
 ## 10. JupyterLab
