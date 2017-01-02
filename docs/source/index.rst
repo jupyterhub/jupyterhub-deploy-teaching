@@ -29,5 +29,6 @@ Contents
    installation.rst
    configure-nbgrader.rst
    use-nbgrader.rst
+   teaching-checklist.md
    acknowledgment.rst
    repo_contents.md
