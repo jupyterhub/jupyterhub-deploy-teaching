@@ -1,8 +1,8 @@
 ---
+# Uses conda to install ipython and jupyter dependencies and python3 kernel
 
-
-- name: conda install ipython/jupyter deps
-  conda: name={{item}} state=present
+- name: conda install ipython and jupyter deps
+  command: conda install name={{item}} state=present
   become: true
   with_items:
     - notebook=4.2

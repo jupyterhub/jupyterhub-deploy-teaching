@@ -31,3 +31,4 @@ Contents
    use-nbgrader.rst
    teaching-checklist.md
    acknowledgment.rst
+   repo_contents.md

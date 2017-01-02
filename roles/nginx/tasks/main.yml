@@ -53,6 +53,8 @@
     - directory
     - touch
 
+# TODO: check if the key/cert exists before trying to install
+
 - name: install SSL key
   copy: src='../../../security/ssl.key' dest={{ssl_key_path}} owner=root group=root mode=0600
   become: true

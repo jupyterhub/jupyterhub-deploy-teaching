@@ -1,6 +1,6 @@
 ---
 
-- name: directory to hold public keys
+- name: create directory to hold public keys
   file: state=directory path=/tmp/pubkeys mode=0755
 
 - name: fetch public keys from github

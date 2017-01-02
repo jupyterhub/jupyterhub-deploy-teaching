@@ -1,4 +1,5 @@
 ---
+# This playbook installs a bash environment and kernel
 
 - name: pip install bash_kernel package
   pip: name={{item}} state=present editable=false
@@ -6,6 +7,6 @@
   with_items:
       - bash_kernel
 
-- name: install bash_kernel
+- name: install bash_kernel for jupyter
   command: python3 -m bash_kernel.install
   become: true

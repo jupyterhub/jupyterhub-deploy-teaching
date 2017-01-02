@@ -1,9 +1,9 @@
 ---
-    
+# The playbook saves old user accounts on the host
+
 - hosts: jupyterhub_hosts
   tasks:
     - name: save the old user accounts
       command: python3 save_users.py chdir={{home_dir}}
       become: true
       when: use_oauth
-

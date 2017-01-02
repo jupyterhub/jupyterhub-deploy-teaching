@@ -28,7 +28,7 @@
   with_items:
     - IRkernel
 
-- name: install irkernel kernelspec
+- name: install irkernel kernelspec for jupyter
   command: R --quiet -e "IRkernel::installspec(user = FALSE)"
 
 - name: install additional R packages

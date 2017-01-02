@@ -1,13 +1,13 @@
 ---
 
-- name: JupyterHub conda dependencies
+- name: install jupyterhub dependencies via conda
   conda: name={{item}} state=present
   become: true
   with_items:
     - configurable-http-proxy
     - sqlalchemy
 
-- name: pip install jupyterhub
+- name: install jupyterhub via pip
   pip: name={{item}} state=present editable=false
   become: true
   with_items:
