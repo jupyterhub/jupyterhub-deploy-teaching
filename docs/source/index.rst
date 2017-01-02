@@ -10,7 +10,7 @@ Date: |today|
 Abstract
 --------
 This deployment is designed for teaching a small to medium
-group of trusted users. 
+group of trusted users.
 
 As a simple, reusable JupyterHub deployment for your reference, this
 repository enables installation and deployment of JupyterHub and nbgrader
@@ -29,4 +29,5 @@ Contents
    installation.rst
    configure-nbgrader.rst
    use-nbgrader.rst
+   teaching-checklist.md
    acknowledgment.rst
