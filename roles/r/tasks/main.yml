@@ -15,16 +15,22 @@
     - libssl-dev
 
 - name: install IRkernel's dependencies
-  command: R --quiet -e "if (! '{{item}}' %in% installed.packages()[,'Package']) install.packages('{{item}}', repos='http://cran.rstudio.com/')"
+  command: R --quiet -e "install.packages('{{item}}', repos='http://cran.rstudio.com/')"
+  # command: R --quiet -e "if (! '{{item}}' %in% installed.packages()[,'Package']) install.packages('{{item}}', repos='http://cran.rstudio.com/')"
   with_items:
     - repr
     - IRdisplay
-    - pbdZMQ
+    - evaluate
     - crayon
+    - pbdZMQ
     - devtools
+    - uuid
+    - digest
+    - stringi
 
 - name: install IRkernel
-  command: R --quiet -e "if (! '{{item}}' %in% installed.packages()[,'Package']) devtools::install_github('IRkernel/{{item}}')"
+  command: R --quiet -e "devtools::install_github('IRkernel/{{item}}')"
+  # command: R --quiet -e "if (! '{{item}}' %in% installed.packages()[,'Package']) devtools::install_github('IRkernel/{{item}}')"
   with_items:
     - IRkernel
 
@@ -32,9 +38,70 @@
   command: R --quiet -e "IRkernel::installspec(user = FALSE)"
 
 - name: install additional R packages
-  command: R --quiet -e "if (! '{{item}}' %in% installed.packages()[,'Package']) install.packages('{{item}}', repos='http://cran.rstudio.com/')"
+  command: R --quiet -e "install.packages('{{item}}', repos='http://cran.rstudio.com/')"
+  # command: R --quiet -e "if (! '{{item}}' %in% installed.packages()[,'Package']) install.packages('{{item}}', repos='http://cran.rstudio.com/')"
   with_items:
-    - ggplot2
-    - dplyr
-    - reshape2
     - car
+    - ggplot2
+    - XML
+    - plyr
+    - randomForest
+    - Hmisc
+    - stringr
+    - RColorBrewer
+    - reshape
+    - reshape2
+    - RCurl
+    - devtools
+    - dplyr
+    - httr
+    - knitr
+    - packrat
+    - rmarkdown
+    - rvtest
+    - testit
+    - testthat
+    - tidyr
+    - shiny
+    - base64enc
+    - Cairo
+    - codetools
+    - table
+    - gridExtra
+    - gtable
+    - hexbin
+    - jpeg
+    - Lahman
+    - MASS
+    - PKI
+    - png
+    - microbenchmark
+    - mgcv
+    - mapproj
+    - maps
+    - maptools
+    - mgcv
+    - multcomp
+    - nycflights13
+    - quantreg
+    - javareconf
+    - rJava
+    - roxygen2
+    - RSQLite
+    - lattice
+    - nlme
+    - RCurl 
+    - RHTMLForms
+    - RJSONIO
+    - RSelenium
+    - rgl
+    - caret
+    - data.table
+    - parallel
+    - testthat
+    - rpart
+    - caret
+    - RTextTools
+    - XLSX
+    - doSnow
+    - dplyr2
