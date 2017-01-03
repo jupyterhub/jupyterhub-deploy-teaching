@@ -19,9 +19,13 @@
   with_items:
     - repr
     - IRdisplay
-    - pbdZMQ
+    - evaluate
     - crayon
+    - pbdZMQ
     - devtools
+    - uuid
+    - digest
+    - stringi
 
 - name: install IRkernel
   command: R --quiet -e "if (! '{{item}}' %in% installed.packages()[,'Package']) devtools::install_github('IRkernel/{{item}}')"
@@ -33,8 +37,4 @@
 
 - name: install additional R packages
   command: R --quiet -e "if (! '{{item}}' %in% installed.packages()[,'Package']) install.packages('{{item}}', repos='http://cran.rstudio.com/')"
-  with_items:
-    - ggplot2
-    - dplyr
-    - reshape2
-    - car
+  with_items: '{{cran_packages}}'

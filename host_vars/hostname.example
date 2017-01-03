@@ -54,6 +54,107 @@ formgrader_hubapi_token: ''
 ansible_python_interpreter: '/usr/bin/python2.7'
 
 # ---------------------------------------------------
+# Packages
+# ---------------------------------------------------
+
+# Add or remove packages here for different package
+# managers here (conda, pip, cran). The package listed
+# here are on-top of the base installation of jupyter,
+# ipython and the IPython and IR kernel.
+
+conda_packages:
+  - numpy
+  - scipy
+  - matplotlib
+  - cython
+  - h5py
+  - scikit-learn
+  - scikit-image
+  - pandas
+  - sympy
+  - pillow
+  - seaborn
+  - patsy
+  - statsmodels
+  - networkx
+  - dask
+  - blaze
+  - odo
+  - altair
+  - tensorflow
+  - keras
+
+pip_packages:
+  - brewer2mpl
+  - ggplot
+  - ipythonblocks
+  - plotly
+
+cran_packages:
+  - car
+  - ggplot2
+  - XML
+  - plyr
+  - randomForest
+  - Hmisc
+  - stringr
+  - RColorBrewer
+  - reshape
+  - reshape2
+  - RCurl
+  - devtools
+  - dplyr
+  - httr
+  - knitr
+  - packrat
+  - rmarkdown
+  - rvtest
+  - testit
+  - testthat
+  - tidyr
+  - shiny
+  - base64enc
+  - Cairo
+  - codetools
+  - table
+  - gridExtra
+  - gtable
+  - hexbin
+  - jpeg
+  - Lahman
+  - MASS
+  - PKI
+  - png
+  - microbenchmark
+  - mgcv
+  - mapproj
+  - maps
+  - maptools
+  - mgcv
+  - multcomp
+  - nycflights13
+  - quantreg
+  - javareconf
+  - rJava
+  - roxygen2
+  - RSQLite
+  - lattice
+  - nlme
+  - RCurl 
+  - RHTMLForms
+  - RJSONIO
+  - RSelenium
+  - rgl
+  - caret
+  - data.table
+  - parallel
+  - testthat
+  - rpart
+  - caret
+  - RTextTools
+  - XLSX
+
+# ---------------------------------------------------
 # Optional settings
 # ---------------------------------------------------
 

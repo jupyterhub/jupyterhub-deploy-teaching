@@ -8,27 +8,3 @@ conda_config:
     - defaults
   show_channel_urls: yes
 
-conda_packages:
-  - numpy
-  - scipy
-  - matplotlib
-  - cython
-  - h5py
-  - scikit-learn
-  - scikit-image
-  - pandas
-  - sympy
-  - pillow
-  - seaborn
-  - patsy
-  - statsmodels
-  - networkx
-  - dask
-  - blaze
-  - odo
-pip_packages:
-  - brewer2mpl
-  - ggplot
-  - ipythonblocks
-  - plotly
-  
