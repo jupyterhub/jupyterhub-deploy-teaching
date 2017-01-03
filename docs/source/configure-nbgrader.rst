@@ -6,25 +6,28 @@ The nbgrader package will be installed with the reference deployment.
 To run nbgrader's formgrade application or use its notebook
 extensions, additional steps are needed.
 
-Configuring the extension
--------------------------
-Each user who wants to use the notebook extension will need to run::
-
-    $ nbgrader extension activate
-
 Deploy formgrade
 ----------------
-Log into JupyterHub as the main instructor (`nbgrader_owner`).
 
-Run the ansible-playbook to deploy formgrade::
+First, edit the :file:`deploy_formgrade.yml` file with the information
+for each course you want to start formgrade for. Each course should have a 
+unique `nbgrader_course_id` and `nbgrader_port`.
+
+Second, make sure that each main instructor (the `nbgrader_owner` for each
+course) has logged into JuptyerHub at least once. This ensures that their
+home directory has been created. The home directory of the main instructor
+is used for the main nbgrader course files. It is assumed that the main
+instructor will be running the nbgrader command line programs.
+
+Third, run the ansible-playbook to deploy formgrade::
 
 	$ ansible-playbook deploy_formgrade.yml
 
-SSH into the server::
+Fourth, SSH into the JupyterHub server::
 
     $ ssh {user}@{hostname}
 
-Restart jupyterhub and nbgrader by doing::
+Finally, restart jupyterhub and nbgrader by doing::
 
     $ supervisorctl reload
 
