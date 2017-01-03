@@ -34,16 +34,6 @@ install_bash_kernel: true
 # enter between quotation marks below
 proxy_auth_token: ''
 
-# nbgrader and formgrade settings (use_nbgrader default: false)
-use_nbgrader: false
-nbgrader_course_id: mycourse
-nbgrader_owner: instructor
-nbgrader_base_dir: "{{home_dir}}/{{nbgrader_owner}}/nbgrader/{{nbgrader_course_id}}"
-nbgrader_graders:
-    - instructor
-    - grader
-nbgrader_port: 5005
-
 # The API token formgrader will use to make Hub requests
 # Create using something like `openssl rand -hex 32` and
 # enter between quotation marks below
