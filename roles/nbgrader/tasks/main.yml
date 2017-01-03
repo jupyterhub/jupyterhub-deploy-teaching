@@ -21,6 +21,13 @@
     - directory
     - touch
 
-- name: install the nbgrader extension
-  command: nbgrader extension install
+- name: install the nbgrader nbextensions
+  command: jupyter nbextension {{item}} --sys-prefix --py nbgrader
+  become: true
+  with_items:
+    - install
+    - enable
+
+- name: install the nbgrader serverextension
+  command: jupyter serverextension enable --sys-prefix --py nbgrader
   become: true
