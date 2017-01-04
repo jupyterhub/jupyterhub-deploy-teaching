@@ -5,11 +5,11 @@
   become: true
 
 - name: install jupyterhub launch script
-  action: template src=start-jupyterhub.sh.j2 dest={{jupyterhub_srv_dir}}/start-jupyterhub.sh mode=0700
+  template: src=start-jupyterhub.sh.j2 dest={{jupyterhub_srv_dir}}/start-jupyterhub.sh mode=0700
   become: true
 
 - name: load jupyterhub supervisor config
-  action: supervisorctl name=jupyterhub state=present
+  supervisorctl: name=jupyterhub state=present
 
 - name: restart jupyterhub with supervisor
   supervisorctl: name=jupyterhub state=restarted

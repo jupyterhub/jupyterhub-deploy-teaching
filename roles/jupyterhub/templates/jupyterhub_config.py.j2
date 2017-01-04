@@ -39,15 +39,17 @@ c.Authenticator.whitelist = set()
 {% endif %}
 
 c.JupyterHub.services = [
-{% if formgrader_hubapi_token %}
+{% if use_nbgrader and formgrader_hubapi_token %}
+{%- for course in nbgrader_courses[:-1] -%}
     {
-        'name': 'formgrader',
+        'name': 'formgrader-{{course.nbgrader_course_id}}',
         'admin': True,
         'api_token': '{{formgrader_hubapi_token}}',
-        'url': 'http://127.0.0.1:{{nbgrader_port}}',
+        'url': 'http://127.0.0.1:{{course.nbgrader_port}}',
     },
+{%- endfor -%}
 {% endif %}
-{% if cull_idle_servers_hubapi_token %}
+{% if use_cull_idle_servers and cull_idle_servers_hubapi_token %}
     {
         'name': 'cull_idle_servers',
         'admin': True,

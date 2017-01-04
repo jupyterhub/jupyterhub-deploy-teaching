@@ -7,17 +7,4 @@
  
 - hosts: jupyterhub_hosts
   roles:
-    - {
-        role: formgrade,
-        nbgrader_course_id: "course1",
-        nbgrader_owner: "instructor1",
-        nbgrader_graders: ["instructor1", "grader1"],
-        nbgrader_port: 5005
-      }
-    - {
-        role: formgrade,
-        nbgrader_course_id: "course2",
-        nbgrader_owner: "instructor2",
-        nbgrader_graders: ["instructor2", "grader2"],
-        nbgrader_port: 5006
-      }
+    - formgrade
