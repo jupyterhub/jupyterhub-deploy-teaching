@@ -216,6 +216,3 @@ ga_tracking_id: ''
 # Set NewRelic license key (Optional)
 newrelic_license_key: ''
 
-# Set user-friendly codename of installed ubuntu version. (Optional - Needed when using R)
-# This codename is used to setup the R apt repositories
-ubuntu_codename: wily

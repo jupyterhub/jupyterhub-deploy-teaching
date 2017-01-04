@@ -13,6 +13,13 @@
 
 
 - hosts: jupyterhub_hosts
+  tasks:
+    - name: Make sure we are running on Ubuntu
+      fail: msg="This ansible setup only work on Ubuntu"
+      when: ansible_distribution != 'Ubuntu' 
+
+
+- hosts: jupyterhub_hosts
   roles:
     - common
     - python
