@@ -1,5 +1,17 @@
 ---
 
+- name: stat home directories of instructors
+  stat: path={{home_dir}}/{{item.owner}}
+  with_items:
+    - "{{nbgrader_courses}}"
+  register: home_dirs_exists
+
+- name: fail if home directories of instructors don't exist
+  fail: msg="Instructors' home directory doesn't exist, create them first!"
+  when: item.stat.exists == False
+  with_items:
+    - "{{home_dirs_exists.results}}"
+
 - name: make sure base exists
   file: path={{home_dir}}/{{item[0].owner}}/nbgrader/{{item[0].course_id}}/ state={{item[1]}} owner={{item[0].owner}} mode=0700
   become: true
