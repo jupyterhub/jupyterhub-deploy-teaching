@@ -195,16 +195,16 @@ formgrader_hubapi_token: ''
 # port.
 nbgrader_courses:
   - {
-      nbgrader_course_id: "course1",
-      nbgrader_owner: "instructor1",
-      nbgrader_graders: ["instructor1", "grader1"],
-      nbgrader_port: 5005
+      course_id: "course1",
+      owner: "instructor1",
+      graders: ["instructor1", "grader1"],
+      port: 5005
     }
   - {
-      nbgrader_course_id: "course2",
-      nbgrader_owner: "instructor2",
-      nbgrader_graders: ["instructor2", "grader2"],
-      nbgrader_port: 5006
+      course_id: "course2",
+      owner: "instructor2",
+      graders: ["instructor2", "grader2"],
+      port: 5006
     }
 
 # Set Google Analytics Tracking ID (Optional)
