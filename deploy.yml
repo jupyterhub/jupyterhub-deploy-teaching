@@ -24,18 +24,18 @@
     - common
     - python
     - role: r
-      when: install_r_kernel
+      when: install_r_kernel is defined and install_r_kernel != ''
     - role: newrelic
       when: newrelic_license_key is defined and newrelic_license_key != ''
     - nginx
     - supervisor
     - saveusers
     - role: bash
-      when: install_bash_kernel
+      when: install_bash_kernel is defined and install_bash_kernel != ''
     - jupyterhub
     - role: cull_idle
-      when: use_cull_idle_servers
+      when: use_cull_idle_servers is defined and use_cull_idle_servers != ''
     - role: nbgrader
-      when: use_nbgrader
+      when: use_nbgrader is defined and use_nbgrader != ''
   environment:
       PATH: "/opt/conda/bin:{{ default_path.stdout }}"
