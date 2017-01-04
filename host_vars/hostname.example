@@ -66,8 +66,6 @@ conda_packages:
   - blaze
   - odo
   - altair
-  - tensorflow
-  - keras
 
 pip_packages:
   - brewer2mpl
