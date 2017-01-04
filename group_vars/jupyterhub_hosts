@@ -5,6 +5,14 @@
 #       for individual hosts, create and edit files in the host_vars folder.
 
 # ---------------------------------------------------
+# Ansible
+# ---------------------------------------------------
+
+# Path of the Python 2.7 interpreter on the remote server
+# Note: Ansible requires Python 2.7 for provisioning so the path must be set
+ansible_python_interpreter: '/usr/bin/python2.7'
+
+# ---------------------------------------------------
 # JupyterHub config directories
 # ---------------------------------------------------
 
