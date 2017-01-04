@@ -3,6 +3,21 @@
 # This playbook is deployed separately and after `deploy.yml` since the
 # instructor's user account must be set up before deploying formgrader
 
+# Multiple formgrade instances can be run on a system, one for each course
+ 
 - hosts: jupyterhub_hosts
   roles:
-    - formgrade
+    - {
+        role: formgrade,
+        nbgrader_course_id: "course1",
+        nbgrader_owner: "instructor1",
+        nbgrader_graders: ["instructor1", "grader1"],
+        nbgrader_port: 5005
+      }
+    - {
+        role: formgrade,
+        nbgrader_course_id: "course2",
+        nbgrader_owner: "instructor2",
+        nbgrader_graders: ["instructor2", "grader2"],
+        nbgrader_port: 5006
+      }
