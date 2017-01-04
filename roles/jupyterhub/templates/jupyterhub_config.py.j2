@@ -40,7 +40,7 @@ c.Authenticator.whitelist = set()
 
 c.JupyterHub.services = [
 {% if use_nbgrader and formgrader_hubapi_token %}
-{%- for course in nbgrader_courses[:-1] -%}
+{%- for course in nbgrader_courses -%}
     {
         'name': 'formgrader-{{course.nbgrader_course_id}}',
         'admin': True,

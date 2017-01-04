@@ -2,17 +2,17 @@
 # Supervisord is responsible for logging.
 c = get_config()
 
-c.NbGrader.course_id = '{{item.nbgrader_course_id}}'
+c.NbGrader.course_id = '{{item.course_id}}'
 
 c.FormgradeApp.authenticator_class = u'nbgrader.auth.hubauth.HubAuth'
-c.FormgradeApp.port = {{item.nbgrader_port}}
+c.FormgradeApp.port = {{item.port}}
 
 c.HubAuth.proxy_token = u'{{proxy_auth_token}}'
 c.HubAuth.hubapi_token = u'{{formgrader_hubapi_token}}'
 c.HubAuth.hub_base_url = u'https://{{inventory_hostname}}'
-c.HubAuth.notebook_url_prefix = u'{{nbgrader_base_dir}}'
+c.HubAuth.notebook_url_prefix = u'{{home_dir}}/{{item.owner}}/nbgrader/{{item.course_id}}'
 c.HubAuth.graders = [
-{%- for grader in item.nbgrader_graders[:-1] -%}
+{%- for grader in item.graders[:-1] -%}
 '{{grader}}',
 {%- endfor -%}
-'{{-item.nbgrader_graders[-1]-}}']
+'{{-item.graders[-1]-}}']

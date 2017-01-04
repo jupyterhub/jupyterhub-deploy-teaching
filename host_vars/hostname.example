@@ -3,48 +3,43 @@
 # An example `hostname` file
 #
 # Edit this file to customize settings for a particular host.
-# Save as `hostname` without the `.example` suffix.
+# Save as FQDN of the hostname without the `.example` suffix,
+# such as `jupyterhub.myuniversity.edu`.
 
-# ---------------------------------------------------
+# ------------------------------------------------------------------------------
 # Required settings
-# ---------------------------------------------------
+# ------------------------------------------------------------------------------
 
-# The base directory of user accounts
+# The base directory of user accounts.
 home_dir: /home
 
-# Users with administrative privileges
+# Users with administrative privileges.
 jupyterhub_admin_users:
   - instructor
 
-# Whitelist of jupyterhub users
+# Whitelist of jupyterhub users.
 jupyterhub_users:
   - instructor
   - grader
   - student1
   - student2
 
-# R kernel installation (default: false)
+# R kernel installation, set to true to enable.
 install_r_kernel: false
 
-# bash kernel installation
+# bash kernel installation, set to true to enable
 install_bash_kernel: true
 
-# Secret token for proxy access
-# Create token using something like `openssl rand -hex 32` and
-# enter between quotation marks below
+# Secret token for proxy access. Create token using something like `openssl rand
+# -hex 32` and enter between quotation marks below.
 proxy_auth_token: ''
 
-# Path of the Python 2.7 interpreter on the remote server
-# Note: Ansible requires Python 2.7 for provisioning so the path must be set
-ansible_python_interpreter: '/usr/bin/python2.7'
-
-# ---------------------------------------------------
+# ------------------------------------------------------------------------------
 # Packages
-# ---------------------------------------------------
+# ------------------------------------------------------------------------------
 
-# Add or remove packages here for different package
-# managers here (conda, pip, cran). The package listed
-# here are on-top of the base installation of jupyter,
+# Add or remove packages here for different package managers here (conda, pip,
+# cran). The package listed here are on-top of the base installation of jupyter,
 # ipython and the IPython and IR kernel.
 
 conda_packages:
@@ -66,8 +61,6 @@ conda_packages:
   - blaze
   - odo
   - altair
-  - tensorflow
-  - keras
 
 pip_packages:
   - brewer2mpl
@@ -139,13 +132,93 @@ cran_packages:
   - RTextTools
   - XLSX
 
-# ---------------------------------------------------
+# ------------------------------------------------------------------------------
 # Optional settings
-# ---------------------------------------------------
+# ------------------------------------------------------------------------------
 
-# To mount local file systems populate this list. (Optional)
-# This adds the entries to /etc/fstab, creates the mount points,
-# and mounts them. Note: Disks must be partitioned and formatted.
+# The following sections are for optional features that can be enabled.
+
+# ------------------------------------------------------------------------------
+# OAuth
+# ------------------------------------------------------------------------------
+
+# The default authentication will use PAM, which is the standard UNIX password
+# standard. In the default configuration UNIX usernames and passwords will be
+# used for JupyterHub. Enabling OAuth through an OAuth provider (such as GitHub)
+# will enable users to log in using their username and passwords from the OAuth
+# provider. In this case, new users can be added using the JupyterHub Admin
+# page, and the users' home directories will be automatically created.
+
+# Set to `true` to enable.
+use_oauth: false
+
+# The OAuth callback URL.
+oauth_callback_url: https://mydomain.org/hub/oauth_callback
+
+# The OAuth client ID.
+oauth_client_id: ''
+
+# The OAuth client secret.
+oauth_client_secret: ''
+
+# ------------------------------------------------------------------------------
+# nbgrader
+# ------------------------------------------------------------------------------
+
+# nbgrader is a system for assigning, collecting and grading notebook based
+# homework assignments. For more details see:
+# http://nbgrader.readthedocs.io/en/stable/
+
+# Set to `true` to enable.
+use_nbgrader: false
+
+# The API token formgrader will use to make Hub requests Create using something
+# like `openssl rand -hex 32` and enter between quotation marks below.
+formgrader_hubapi_token: ''
+
+# The list of nbgrader courses. Each must have a unique `course_id` and `port`.
+nbgrader_courses:
+  - {
+      course_id: "course1",
+      owner: "instructor1",
+      graders: ["instructor1", "grader1"],
+      port: 5005
+    }
+  - {
+      course_id: "course2",
+      owner: "instructor2",
+      graders: ["instructor2", "grader2"],
+      port: 5006
+    }
+
+# ------------------------------------------------------------------------------
+# cull_idle_servers
+# ------------------------------------------------------------------------------
+
+# Set to `true` to enable.
+use_cull_idle_servers: false
+
+# The API token for culling, create using something like `openssl rand -hex 32`
+cull_idle_servers_hubapi_token: ''
+
+# The interval (in seconds) for checking for idle servers to cull.
+cull_every: 600
+
+# The idle timeout (in seconds).
+cull_timeout: 3600
+
+# ------------------------------------------------------------------------------
+# Misc optional settings
+# ------------------------------------------------------------------------------
+
+# List of the GitHub usernames who will receive root access via ssh. Public
+# GitHub SSH keys will be installed to allow the user to ssh into the server as
+# root.
+github_usernames: ['instructor', 'grader']
+
+# To mount local file systems populate this list. (Optional) This adds the
+# entries to /etc/fstab, creates the mount points, and mounts them. Note: Disks
+# must be partitioned and formatted.
 local_mounts: []
 #   - name: /mountpoint1
 #     src: /dev/sdb1
@@ -154,65 +227,20 @@ local_mounts: []
 #     src: /dev/sdc1
 #     fstype: ext3
 
-# SSL using letsencrypt (optional - use letsencrypt default: false)
-# If using letsencrypt to generate SSL key/cert, set `use_letsencrypt` to `true`
-# Otherwise if not using letsencrypt for SSL, you MUST put your key and cert into the security directory as
-# `security/ssl.crt` and `security/ssl.key`
+# SSL using letsencrypt (optional - use letsencrypt default: false) If using
+# letsencrypt to generate SSL key/cert, set `use_letsencrypt` to `true`
+# Otherwise if not using letsencrypt for SSL, you MUST put your key and cert
+# into the security directory as `security/ssl.crt` and `security/ssl.key`.
 use_letsencrypt: false
 letsencrypt_email: ''
 
-# If users should have `/public_html/username` directories, set this to `true` (Optional)
+# Should users have `/public_html/username` directories. Set this to `true` to
+# enable.
 nginx_public_html: false
 
-# List of the GitHub usernames who will receive root access via ssh
-# Public GitHub SSH keys will be installed to allow the user to ssh into the server as root.
-github_usernames: ['instructor', 'grader']
-
-# Oauth (Optional - use oauth default: false)
-# Change `use_oauth` to `true` and set the other values appropriately
-# to enable GitHub OAuth.
-# If left as default `false`, PAM authentication will be used.
-use_oauth: false
-oauth_callback_url: https://mydomain.org/hub/oauth_callback
-oauth_client_id: ''
-oauth_client_secret: ''
-
-# Cull idle servers (Optional default: false)
-# Enable or disable cull idle single user servers
-use_cull_idle_servers: false
-# The username for culling idle servers. MUST be a user of JupyterHub.
-# For example, root won't work unless root can access JupyterHub.
-cull_idle_servers_owner: instructor
-# The API token for culling, create using something like `openssl rand -hex 32`
-cull_idle_servers_hubapi_token: ''
-# The interval (in seconds) for checking for idle servers to cull
-cull_every: 600
-# The idle timeout (in seconds)
-cull_timeout: 3600
-
-# nbgrader (Optional default: false)
-use_nbgrader: false
-# The API token formgrader will use to make Hub requests
-# Create using something like `openssl rand -hex 32` and
-# enter between quotation marks below
-formgrader_hubapi_token: ''
-nbgrader_courses:
-  - {
-      nbgrader_course_id: "course2",
-      nbgrader_owner: "instructor2",
-      nbgrader_graders: ["instructor2", "grader2"],
-      nbgrader_port: 5006
-    }
-  - {
-      nbgrader_course_id: "course2",
-      nbgrader_owner: "instructor2",
-      nbgrader_graders: ["instructor2", "grader2"],
-      nbgrader_port: 5006
-    }
-
-# Set Google Analytics Tracking ID (Optional)
+# Set Google Analytics Tracking ID (Optional).
 ga_tracking_id: ''
 
-# Set NewRelic license key (Optional)
+# Set NewRelic license key (Optional).
 newrelic_license_key: ''
 
