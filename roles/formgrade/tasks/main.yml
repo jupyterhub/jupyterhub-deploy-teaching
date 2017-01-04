@@ -1,34 +1,39 @@
 ---
 
 - name: make sure base exists
-  file: path={{nbgrader_base_dir}}/ state={{item}} owner={{nbgrader_owner}} mode=0700
+  file: path={{nbgrader_base_dir}}/ state={{item[0]}} owner={{item[1].nbgrader_owner}} mode=0700
   become: true
   with_items:
-    - directory
-    - touch
+    - ['directory', 'touch']
+    - "{{nbgrader_courses}}"
 
 - name: make sure subdirectories exist
-  file: path={{nbgrader_base_dir}}/{{item}}/ state=directory owner={{nbgrader_owner}} mode=0700
+  file: path={{nbgrader_base_dir}}/{{item[0]}}/ state=directory owner={{item[1].nbgrader_owner}} mode=0700
   become: true
   with_items:
-    - source
-    - release
-    - feedback
-    - autograded
-    - submitted
+    - ['source', 'release', 'feedback', 'autograded', 'submitted']
+    - "{{nbgrader_courses}}"
 
 - name: install nbgrader config file
-  template: "src=nbgrader_config.py.j2 dest={{nbgrader_base_dir}}/nbgrader_config.py owner={{nbgrader_owner}} mode=700"
+  template: "src=nbgrader_config.py.j2 dest={{nbgrader_base_dir}}/nbgrader_config.py owner={{item.nbgrader_owner}} mode=700"
   become: true
+  with_items:
+    - "{{nbgrader_courses}}"
 
 - name: install supervisor config for nbgrader
-  template: "src=nbgrader.conf.j2 dest=/etc/supervisor/conf.d/nbgrader_{{nbgrader_course_id}}.conf owner=root group=root mode='0600' backup=yes"
+  template: "src=nbgrader.conf.j2 dest=/etc/supervisor/conf.d/nbgrader_{{item.nbgrader_course_id}}.conf owner=root group=root mode='0600' backup=yes"
   become: true
+  with_items:
+    - "{{nbgrader_courses}}"
 
 - name: load nbgrader supervisor config
-  supervisorctl: name=nbgrader_{{nbgrader_course_id}} state=present
+  supervisorctl: name=nbgrader_{{item.nbgrader_course_id}} state=present
   become: true
+  with_items:
+    - "{{nbgrader_courses}}"
 
 - name: start nbgrader with supervisor
-  supervisorctl: name=nbgrader_{{nbgrader_course_id}} state=restarted
+  supervisorctl: name=nbgrader_{{item.nbgrader_course_id}} state=restarted
   become: true
+  with_items:
+    - "{{nbgrader_courses}}"
