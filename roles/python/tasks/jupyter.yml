@@ -2,15 +2,15 @@
 # Uses conda to install ipython and jupyter dependencies and python3 kernel
 
 - name: conda install ipython and jupyter deps
-  command: conda install name={{item}} state=present
+  conda: name={{item}} state=present
   become: true
   with_items:
-    - notebook=4.2
+    - notebook
     - ipyparallel
     - ipykernel
     - nbconvert
     - pandoc
-    - ipywidgets=5
+    - ipywidgets
 
 - name: install python3 kernelspec
   command: python3 -m IPython kernel install

@@ -1,11 +1,11 @@
 ---
 
 - name: user conda packages
-  command: conda install name={{item}} state=present
+  conda: name={{item}} state=present
   become: true
   with_items: '{{conda_packages}}'
 
 - name: user pip packages
-  command: pip install name={{item}} state=present
+  pip: name={{item}} state=present
   become: true
   with_items: '{{pip_packages}}'
