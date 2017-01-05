@@ -34,6 +34,11 @@ install_bash_kernel: true
 # `openssl rand -hex 32` and enter between quotation marks below.
 proxy_auth_token: ''
 
+# Cleanup single user servers and the proxy on jupyterhub shutdown. Setting
+# this to false, will allow jupyterhub to be restarted while leaving the proxy
+# and single user servers running.
+cleanup_on_shutdown: true
+
 # ------------------------------------------------------------------------------
 # Packages
 # ------------------------------------------------------------------------------
