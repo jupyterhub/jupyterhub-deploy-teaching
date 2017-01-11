@@ -66,7 +66,7 @@ c.JupyterHub.services = [
     },
 {% endfor -%}
 {% endif %}
-{% if use_cull_idle_servers and cull_idle_servers_hubapi_token %}
+{% if use_cull_idle_servers %}
     {
         'name': 'cull_idle_servers',
         'admin': True,
