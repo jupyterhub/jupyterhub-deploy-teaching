@@ -177,11 +177,9 @@ oauth_client_secret: ''
 # Set to `true` to enable.
 use_nbgrader: false
 
-# The API token formgrader will use to make Hub requests Create using something
-# like `openssl rand -hex 32` and enter between quotation marks below.
-formgrader_hubapi_token: ''
-
 # The list of nbgrader courses. Each must have a unique `course_id` and `port`.
+# IMPORTANT: These user accounts must be created before the ansible scripts
+# are run. If OAuth is used, passwords must be disabled for those users.
 nbgrader_courses:
   - {
       course_id: "course1",
@@ -202,9 +200,6 @@ nbgrader_courses:
 
 # Set to `true` to enable.
 use_cull_idle_servers: false
-
-# The API token for culling, create using something like `openssl rand -hex 32`.
-cull_idle_servers_hubapi_token: ''
 
 # The interval (in seconds) for checking for idle servers to cull.
 cull_every: 600

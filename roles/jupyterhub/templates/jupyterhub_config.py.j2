@@ -13,6 +13,18 @@ c.JupyterHub.cleanup_proxy = False
 c.JupyterHub.cleanup_servers = False
 {% endif %}
 
+c.JupyterHub.load_groups = [
+{% if use_nbgrader -%}
+{%- for course in nbgrader_courses -%}
+    'formgrade-{{course.course_id}}': [
+{%- for grader in course.graders -%}
+        '{{grader}}',
+{%- endfor %}
+    ]
+{% endfor -%}
+{%- endif %}
+]
+
 {% if use_oauth %}
 c.JupyterHub.authenticator_class = u'oauthenticator.LocalGitHubOAuthenticator'
 c.LocalGitHubOAuthenticator.create_system_users = True
@@ -43,21 +55,22 @@ c.Authenticator.whitelist = set()
 {% endif %}
 
 c.JupyterHub.services = [
-{% if use_nbgrader and formgrader_hubapi_token %}
+{% if use_nbgrader %}
 {%- for course in nbgrader_courses -%}
     {
-        'name': 'formgrader-{{course.course_id}}',
+        'name': 'formgrade-{{course.course_id}}',
         'admin': True,
-        'api_token': '{{formgrader_hubapi_token}}',
         'url': 'http://127.0.0.1:{{course.port}}',
+		'user': {{course.owner}},
+		'cwd': '{{home_dir}}/{{course.owner}}/nbgrader/{{course.course_id}}'
     },
-{%- endfor -%}
+{% endfor -%}
 {% endif %}
 {% if use_cull_idle_servers and cull_idle_servers_hubapi_token %}
     {
         'name': 'cull_idle_servers',
         'admin': True,
-        'api_token': '{{cull_idle_servers_hubapi_token}}',
-    },
+		'command': ['/opt/conda/bin/python3', '{{jupyterhub_srv_dir}}/cull_idle_servers.py', '--cull-every={{cull_every}}', '--timeout={{cull_timeout}}']
+	},
 {% endif %}
 ]
