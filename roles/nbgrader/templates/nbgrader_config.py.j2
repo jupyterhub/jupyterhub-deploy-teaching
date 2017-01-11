@@ -1,0 +1,9 @@
+# Configuration file for nbgrader.
+# Supervisord is responsible for logging.
+c = get_config()
+
+c.NbGrader.course_id = '{{item.course_id}}'
+
+c.FormgradeApp.authenticator_class = u'nbgrader.auth.hubauth.HubAuth'
+c.FormgradeApp.port = {{item.port}}
+c.HubAuth.grader_group = {{item.grader_group}}
