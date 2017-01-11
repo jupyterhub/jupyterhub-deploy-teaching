@@ -45,21 +45,21 @@
     - "{{home_dirs_exists.results}}"
 
 - name: make sure base exists
-  file: path={{home_dir}}/{{item[0].owner}}/nbgrader/{{item[0].course_id}}/ state={{item[1]}} owner={{item[0].owner}} mode=0700
+  file: path={{home_dir}}/{{item[0].owner}}/nbgrader/{{item[0].course_id}}/ state={{item[1]}} owner={{item[0].owner}} group={{item[0].owner}} mode=0700
   become: true
   with_nested:
     - "{{nbgrader_courses}}"
     - ['directory', 'touch']
 
 - name: make sure subdirectories exist
-  file: path={{home_dir}}/{{item[0].owner}}/nbgrader/{{item[0].course_id}}/{{item[1]}}/ state=directory owner={{item[0].owner}} mode=0700
+  file: path={{home_dir}}/{{item[0].owner}}/nbgrader/{{item[0].course_id}}/{{item[1]}}/ state=directory owner={{item[0].owner}} group={{item[0].owner}} mode=0700
   become: true
   with_nested:
     - "{{nbgrader_courses}}"
     - ['source', 'release', 'feedback', 'autograded', 'submitted']
 
 - name: install nbgrader config file
-  template: src=nbgrader_config.py.j2 dest={{home_dir}}/{{item.owner}}/nbgrader/{{item.course_id}}/nbgrader_config.py owner={{item.owner}} mode=700
+  template: src=nbgrader_config.py.j2 dest={{home_dir}}/{{item.owner}}/nbgrader/{{item.course_id}}/nbgrader_config.py owner={{item.owner}} group={{item[0].owner}} mode=700
   become: true
   with_items:
     - "{{nbgrader_courses}}"
