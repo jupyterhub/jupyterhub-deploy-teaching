@@ -59,7 +59,7 @@
     - ['source', 'release', 'feedback', 'autograded', 'submitted']
 
 - name: install nbgrader config file
-  template: src=nbgrader_config.py.j2 dest={{home_dir}}/{{item.owner}}/nbgrader/{{item.course_id}}/nbgrader_config.py owner={{item.owner}} group={{item[0].owner}} mode=700
+  template: src=nbgrader_config.py.j2 dest={{home_dir}}/{{item.owner}}/nbgrader/{{item.course_id}}/nbgrader_config.py owner={{item.owner}} group={{item.owner}} mode=700
   become: true
   with_items:
     - "{{nbgrader_courses}}"

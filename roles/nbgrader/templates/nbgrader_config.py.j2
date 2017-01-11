@@ -6,4 +6,4 @@ c.NbGrader.course_id = '{{item.course_id}}'
 
 c.FormgradeApp.authenticator_class = u'nbgrader.auth.hubauth.HubAuth'
 c.FormgradeApp.port = {{item.port}}
-c.HubAuth.grader_group = u'formgrade-{{item.grader_group}}'
+c.HubAuth.grader_group = u'formgrade-{{item.course_id}}'
