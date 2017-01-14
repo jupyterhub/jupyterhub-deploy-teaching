@@ -5,5 +5,6 @@ c = get_config()
 c.NbGrader.course_id = '{{item.course_id}}'
 
 c.FormgradeApp.authenticator_class = u'nbgrader.auth.hubauth.HubAuth'
+c.FormgradeApp.ip = '127.0.0.1'
 c.FormgradeApp.port = {{item.port}}
 c.HubAuth.grader_group = u'formgrade-{{item.course_id}}'
