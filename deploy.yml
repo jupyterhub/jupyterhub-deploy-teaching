@@ -37,5 +37,6 @@
       when: use_cull_idle_servers is defined and use_cull_idle_servers
     - role: nbgrader
       when: use_nbgrader is defined and use_nbgrader
+    - role: start_jupyterhub
   environment:
       PATH: "/opt/conda/bin:{{ default_path.stdout }}"

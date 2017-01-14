@@ -7,9 +7,3 @@
 - name: install jupyterhub launch script
   template: src=start-jupyterhub.sh.j2 dest={{jupyterhub_srv_dir}}/start-jupyterhub.sh mode=0700
   become: true
-
-- name: load jupyterhub supervisor config
-  supervisorctl: name=jupyterhub state=present
-
-- name: restart jupyterhub with supervisor
-  supervisorctl: name=jupyterhub state=restarted
