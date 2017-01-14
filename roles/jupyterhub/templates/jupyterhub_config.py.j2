@@ -61,9 +61,9 @@ c.JupyterHub.services = [
         'name': 'formgrade-{{course.course_id}}',
         'admin': True,
         'url': 'http://127.0.0.1:{{course.port}}',
-        'user': '{{course.owner}}',
+#       'user': '{{course.owner}}',
         'cwd': '{{home_dir}}/{{course.owner}}/nbgrader/{{course.course_id}}',
-		'command': ['nbgrader', 'formgrade']
+        'command': ['nbgrader', 'formgrade']
     },
 {% endfor -%}
 {% endif %}
