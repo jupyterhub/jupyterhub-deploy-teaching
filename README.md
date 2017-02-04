@@ -36,6 +36,7 @@ To *deploy* this JupyterHub reference deployment, you should have:
 - A valid DNS name
 - SSL certificate
 - Ansible 2.1+ installed for JupyterHub configuration (`pip install "ansible>=2.1"`)
+    - [Verified](https://github.com/jupyterhub/jupyterhub-deploy-teaching/issues/48#issuecomment-277407265) Ansible 2.2.1.0 works with Ubuntu 16.04 and Python3
 
 For *administration* of the server, you should also:
 
