@@ -1,0 +1,17 @@
+sudo: required
+dist: trusty
+language: python
+services:
+  - docker
+env:
+  global:
+    - DEBIAN_FRONTEND=noninteractive
+before_install:
+  - sudo apt-get -y update
+  # force-confnew to get new docker config
+  - sudo apt-get install -o Dpkg::Options::="--force-confnew" -y -qq docker-engine
+install:
+  - bash ci/setup.sh
+script:
+  - bash ci/test.sh
+
