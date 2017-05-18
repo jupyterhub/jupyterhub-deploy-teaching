@@ -6,6 +6,6 @@
   with_items: '{{conda_packages}}'
 
 - name: user pip packages
-  pip: name={{item}} state=present
+  pip: name={{item}} state=present executable=pip
   become: true
   with_items: '{{pip_packages}}'
