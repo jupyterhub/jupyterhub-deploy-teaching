@@ -2,7 +2,7 @@
 # This playbook installs a bash environment and kernel
 
 - name: pip install bash_kernel package
-  pip: name={{item}} state=present editable=false
+  pip: name={{item}} state=present editable=false executable=pip
   become: true
   with_items:
       - bash_kernel
