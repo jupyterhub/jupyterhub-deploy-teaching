@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
 date >> /var/log/letsencrypt.log
-certbot-auto renew --no-self-upgrade 2>&1 &>> /var/log/letsencrypt.log
-docker kill -s HUP nginx
+WEBROOT=/etc/letsencrypt/webroot
+test -d "$WEBROOT" || mkdir -p "$WEBROOT"
+certbot-auto renew --webroot --webroot-path="$WEBROOT" --no-self-upgrade 2>&1 &>> /var/log/letsencrypt.log
+service nginx reload
