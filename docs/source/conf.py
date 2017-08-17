@@ -38,7 +38,7 @@ version = '1.0'
 release = '1.0'
 
 language = None
-exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
+exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store', 'ansible-conda']
 pygments_style = 'sphinx'
 todo_include_todos = False
 
