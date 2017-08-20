@@ -1,7 +1,14 @@
 ---
 
+- name: Make sure /opt/conda/src exists
+  file: path=/opt/conda/src/ state={{item}} owner=root group=root mode=0755
+  become: true
+  with_items:
+    - directory
+    - touch
+
 - name: pip install nbgrader
-  pip: name={{item}} state=present executable=pip
+  pip: name={{item}} state=present executable=pip extra_args="--src /opt/conda/src"
   become: true
   with_items:
     # - nbgrader
