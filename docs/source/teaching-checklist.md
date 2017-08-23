@@ -57,7 +57,7 @@ Documentation for JupyterHub: https://jupyterhub.readthedocs.io
 ## 6. Configure users
 
 - [ ] If using [PAM (Pluggable authentication
-  modules)](https://en.wikipedia.org/wiki/Linux_PAM, you will need to
+  modules)](https://en.wikipedia.org/wiki/Linux_PAM), you will need to
   manually create users using adduser: `adduser --gecos "" username`.
 
 - [ ] If using [GitHub OAuth](https://developer.github.com/v3/oauth/), add
