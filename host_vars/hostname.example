@@ -15,12 +15,15 @@ home_dir: /home
 
 # Users with administrative privileges.
 jupyterhub_admin_users:
-  - instructor
+  - instructor1
+  - instructor2
 
 # Whitelist of jupyterhub users.
 jupyterhub_users:
-  - instructor
-  - grader
+  - instructor1
+  - instructor2
+  - grader1
+  - grader2
   - student1
   - student2
 
@@ -214,7 +217,7 @@ cull_timeout: 3600
 # List of the GitHub usernames who will receive root access via ssh. Public
 # GitHub SSH keys will be installed to allow the user to ssh into the server as
 # root.
-github_usernames: ['instructor', 'grader']
+github_usernames: ['instructor1', 'grader1']
 
 # To mount local file systems populate this list. (Optional) This adds the
 # entries to /etc/fstab, creates the mount points, and mounts them. Note: Disks
