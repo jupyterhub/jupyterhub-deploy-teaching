@@ -19,16 +19,15 @@ c.Spawner.cmd = u'/usr/local/bin/start-jupyter-labhub.sh'
 c.Spawner.default_url = '/lab'
 {% endif %}
 
+# A list of jupyterhub groups to create.
 c.JupyterHub.load_groups = {
-{% if use_nbgrader -%}
-{%- for course in nbgrader_courses -%}
-    'formgrade-{{course.course_id}}': [
-{%- for grader in course.graders -%}
-        '{{grader}}',
+{%- for group in jupyterhub_groups -%}
+    '{{group.name}}': [
+{%- for member in group.members -%}
+        '{{member}}',
 {%- endfor -%}
     ],
 {% endfor -%}
-{%- endif %}
 }
 
 {% if use_oauth %}
@@ -60,24 +59,3 @@ c.Authenticator.whitelist = {
 c.Authenticator.whitelist = set()
 {% endif %}
 
-c.JupyterHub.services = [
-{% if use_nbgrader %}
-{%- for course in nbgrader_courses %}
-    {
-        'name': 'formgrade-{{course.course_id}}',
-        'admin': True,
-        'url': 'http://127.0.0.1:{{course.port}}',
-#       'user': '{{course.owner}}',
-        'cwd': '{{home_dir}}/{{course.owner}}/nbgrader/{{course.course_id}}',
-        'command': ['nbgrader', 'formgrade']
-    },
-{% endfor -%}
-{% endif %}
-{% if use_cull_idle_servers %}
-    {
-        'name': 'cull_idle_servers',
-        'admin': True,
-        'command': ['/opt/conda/bin/python3', '{{jupyterhub_srv_dir}}/cull_idle_servers.py', '--cull-every={{cull_every}}', '--timeout={{cull_timeout}}']
-	},
-{% endif %}
-]

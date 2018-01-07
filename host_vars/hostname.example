@@ -27,6 +27,17 @@ jupyterhub_users:
   - student1
   - student2
 
+# A list of jupyterhub groups to create, each with a list of members.
+jupyterhub_groups:
+  - {
+      name: group1,
+      members: ["instructor1", "grader1"]
+    }
+  - {
+      name: group2,
+      members: ["instructor2", "grader2"]
+    }
+
 # Whether to redirect users to JuptyerLab (/lab) by default
 jupyterlab_default: true
 
@@ -189,23 +200,6 @@ oauth_client_secret: ''
 
 # Set to `true` to enable.
 use_nbgrader: false
-
-# The list of nbgrader courses. Each must have a unique `course_id` and `port`.
-# IMPORTANT: These user accounts must be created before the ansible scripts
-# are run. If OAuth is used, passwords must be disabled for those users.
-nbgrader_courses:
-  - {
-      course_id: "course1",
-      owner: "instructor1",
-      graders: ["instructor1", "grader1"],
-      port: 5005
-    }
-  - {
-      course_id: "course2",
-      owner: "instructor2",
-      graders: ["instructor2", "grader2"],
-      port: 5006
-    }
 
 # ------------------------------------------------------------------------------
 # cull_idle_servers
