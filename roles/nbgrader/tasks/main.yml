@@ -1,7 +1,14 @@
 ---
 
+- name: Make sure /opt/conda/src exists
+  file: path=/opt/conda/src/ state={{item}} owner=root group=root mode=0755
+  become: true
+  with_items:
+    - directory
+    - touch
+
 - name: pip install nbgrader
-  pip: name={{item}} state=present executable=pip
+  pip: name={{item}} state=present executable=pip extra_args="--src /opt/conda/src"
   become: true
   with_items:
     # - nbgrader
@@ -15,7 +22,7 @@
     - touch
 
 - name: make sure /srv/nbgrader/exchange exists
-  file: path={{nbgrader_exchange_dir}}/ state={{item}} owner=root group=root mode=0733
+  file: path={{nbgrader_exchange_dir}}/ state={{item}} owner=root group=root mode=0777
   become: true
   with_items:
     - directory
@@ -58,8 +65,14 @@
     - "{{nbgrader_courses}}"
     - ['source', 'release', 'feedback', 'autograded', 'submitted']
 
+- name: make sure .jupyter directory exists
+  file: path={{home_dir}}/{{item.owner}}/.jupyter/ state=directory owner={{item.owner}} group={{item.owner}} mode=0700
+  become: true
+  with_items:
+    - "{{nbgrader_courses}}"
+
 - name: install nbgrader config file
-  template: src=nbgrader_config.py.j2 dest={{home_dir}}/{{item.owner}}/nbgrader/{{item.course_id}}/nbgrader_config.py owner={{item.owner}} group={{item.owner}} mode=700
+  template: src=nbgrader_config.py.j2 dest={{home_dir}}/{{item.owner}}/.jupyter/nbgrader_config.py owner={{item.owner}} group={{item.owner}} mode=0700
   become: true
   with_items:
     - "{{nbgrader_courses}}"
