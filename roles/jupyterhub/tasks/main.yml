@@ -1,8 +1,8 @@
 ---
 
-- include: packages.yml
-- include: directories.yml
-- include: config.yml
-- include: googleanalytics.yml
-- include: supervisor.yml
+- include_tasks: packages.yml
+- include_tasks: directories.yml
+- include_tasks: config.yml
+- include_tasks: googleanalytics.yml
+- include_tasks: supervisor.yml
 

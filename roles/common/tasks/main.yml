@@ -1,7 +1,7 @@
 ---
 
-- include: hostname.yml
-- include: ntp.yml
-- include: packages.yml
-- include: mounts.yml
-- include: ssh.yml
+- include_tasks: hostname.yml
+- include_tasks: ntp.yml
+- include_tasks: packages.yml
+- include_tasks: mounts.yml
+- include_tasks: ssh.yml
