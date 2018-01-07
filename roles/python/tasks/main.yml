@@ -1,5 +1,5 @@
 ---
 
-- include: conda.yml
-- include: jupyter.yml
-- include: python3.yml
+- include_tasks: conda.yml
+- include_tasks: jupyter.yml
+- include_tasks: python3.yml

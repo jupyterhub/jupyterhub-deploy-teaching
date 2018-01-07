@@ -62,7 +62,7 @@ Follow the detailed instructions in the [Installation Guide](http://jupyterhub-d
 The basic steps are:
 - Create the hosts group with Fully Qualified Domain Names (FQDNs) of the hosts
 - Secure your deployment with SSL
-- Deploy with Ansible ``ansible-playbook deploy.yml``
+- Deploy with Ansible ``ansible-playbook -i hosts deploy.yml``
 - Verify your deployment and reboot the Hub ``supervisorctl reload``
 
 ## Configuring nbgrader
@@ -75,7 +75,7 @@ configure formgrade or nbgrader's notebook extensions are:
 
 - activate the extension ``nbgrader extension activate``
 - log into JupyterHub
-- run ansible script ``ansible-playbook deploy_formgrade.yml``
+- run ansible script ``ansible-playbook -i hosts deploy_formgrade.yml``
 - SSH into JupyterHub
 - reboot the Hub and nbgrader ``supervisorctl reload``
 
@@ -98,7 +98,7 @@ Change the ansible configuration by editing ``./ansible_cfg``.
 To limit the deployment to certain hosts, add ``-l hostname`` to the
 Ansible deploy commands:
 
-``ansible-playbook -l hostname deploy.yml``
+``ansible-playbook -i hosts -l hostname deploy.yml``
 
 ### Authentication
 If you are not using GitHub OAuth, you will need to manually create users

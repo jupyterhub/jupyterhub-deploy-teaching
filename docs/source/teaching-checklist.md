@@ -75,7 +75,7 @@ Documentation for JupyterHub: https://jupyterhub.readthedocs.io
 - [ ] **Deploy:** Run `ansible-playbook` for the main deployment.
 
     ```bash
-    $ ansible-playbook deploy.yml
+    $ ansible-playbook -i hosts deploy.yml
     ```
 
 ## 9. Verify deployment and reload supervisor

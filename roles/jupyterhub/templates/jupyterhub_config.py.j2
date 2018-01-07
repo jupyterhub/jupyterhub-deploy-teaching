@@ -6,7 +6,6 @@ c.JupyterHub.ip = u'{{ ansible_default_ipv4.address }}'
 c.JupyterHub.port = 8000
 c.JupyterHub.cookie_secret_file = u'{{ jupyterhub_srv_dir }}/cookie_secret'
 c.JupyterHub.db_url = u'{{ jupyterhub_srv_dir }}/jupyterhub.sqlite'
-c.JupyterHub.proxy_auth_token = u'{{proxy_auth_token}}'
 c.JupyterHub.confirm_no_ssl = True
 {% if not cleanup_on_shutdown %}
 c.JupyterHub.cleanup_proxy = False

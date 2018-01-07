@@ -2,7 +2,9 @@
 # The playbook deploys JupyterHub.
 # This file would be equivalent to a `sites.yml` file in Ansible terms.
 
+
 - hosts: jupyterhub_hosts
+
   tasks:
     - assert:
         that: (ansible_version.major, ansible_version.minor) >= (2, 1)
@@ -13,6 +15,7 @@
 
 
 - hosts: jupyterhub_hosts
+
   tasks:
     - name: Make sure we are running on Ubuntu
       fail: msg="This ansible setup only work on Ubuntu"
@@ -20,6 +23,7 @@
 
 
 - hosts: jupyterhub_hosts
+
   roles:
     - common
     - python

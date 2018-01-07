@@ -11,5 +11,5 @@
   pip: name={{item}} state=present editable=false executable=pip
   become: true
   with_items:
-    - jupyterhub==0.7
-    - oauthenticator==0.5
+    - jupyterhub==0.8.1
+    - oauthenticator==0.7.2

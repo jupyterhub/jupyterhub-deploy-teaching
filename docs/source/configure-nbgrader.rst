@@ -21,7 +21,7 @@ instructor will be running the nbgrader command line programs.
 
 Third, run the ansible-playbook to deploy formgrade::
 
-	$ ansible-playbook deploy_formgrade.yml
+	$ ansible-playbook -i hosts deploy_formgrade.yml
 
 Fourth, SSH into the JupyterHub server::
 
@@ -38,7 +38,7 @@ Configuration notes
 * To limit the deployment to certain hosts, add the ``-l hostname`` to the
   commands::
 
-    $ ansible-playbook -l hostname deploy.yml
+    $ ansible-playbook -i hosts -l hostname deploy.yml
 
 * The logs for `jupyterhub` are in :file:`/var/log/jupyterhub`.
 * The logs for `nbgrader` are in :file:`/var/log/nbgrader`.
@@ -64,7 +64,7 @@ ownership of the home directories.
 
 To save the list of usernames and uids in `{{homedir}}/saved_users.txt`::
 
-    $ ansible-playbook saveusers.yml
+    $ ansible-playbook -i hosts saveusers.yml
 
 Then, when you run deploy.yml, it will look for this file and if it exists, will create
 those users with those exact uids and home directories.
