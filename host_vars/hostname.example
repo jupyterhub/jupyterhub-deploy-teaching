@@ -27,6 +27,9 @@ jupyterhub_users:
   - student1
   - student2
 
+# Whether to redirect users to JuptyerLab (/lab) by default
+jupyterlab_default: true
+
 # R kernel installation, set to true to enable.
 install_r_kernel: false
 
@@ -65,12 +68,23 @@ conda_packages:
   - blaze
   - odo
   - altair
+  - mkl-service # needed for pymc3
+  - pymc3
+  - pytorch
+  - torchvision
 
 pip_packages:
   - brewer2mpl
-  - ggplot
   - ipythonblocks
   - plotly
+  - tensorflow
+  - vdom
+  
+jupyterlab_extensions:
+  - "@jupyterlab/hub-extension"
+  - "@jupyterlab/geojson-extension"
+  - "@jupyterlab/plotly-extension"
+  # - "@jupyter-widgets/jupyterlab-manager"
 
 cran_packages:
   - car

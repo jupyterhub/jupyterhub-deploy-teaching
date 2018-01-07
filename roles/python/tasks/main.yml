@@ -2,4 +2,5 @@
 
 - include_tasks: conda.yml
 - include_tasks: jupyter.yml
+- include_tasks: jupyterlab.yml
 - include_tasks: python3.yml

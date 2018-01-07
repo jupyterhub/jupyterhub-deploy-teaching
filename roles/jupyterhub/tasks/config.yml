@@ -7,3 +7,7 @@
 - name: install jupyterhub cookie secret
   copy: src="../../../security/cookie_secret" dest={{jupyterhub_srv_dir}}/cookie_secret owner=root group=root mode=0600
   become: true
+
+- name: install jupyter labhub launch script
+  template: src=start-jupyter-labhub.sh.j2 dest=/usr/local/bin/start-jupyter-labhub.sh mode=0777
+  become: true
