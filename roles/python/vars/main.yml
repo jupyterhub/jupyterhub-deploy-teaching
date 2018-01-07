@@ -5,6 +5,7 @@ conda_checksum: "md5:7fe70b214bee1143e3e3f0467b71453c"
 conda_config:
   channels:
     - conda-forge
+    - pytorch
     - defaults
   show_channel_urls: yes
 

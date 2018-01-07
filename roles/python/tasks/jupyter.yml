@@ -11,7 +11,7 @@
     - ipykernel
     - nbconvert
     - pandoc
-    # - ipywidgets
+    - ipywidgets
 
 - name: install python3 kernelspec
   command: python3 -m IPython kernel install

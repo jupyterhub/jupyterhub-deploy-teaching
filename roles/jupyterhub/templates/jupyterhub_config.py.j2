@@ -12,6 +12,13 @@ c.JupyterHub.cleanup_proxy = False
 c.JupyterHub.cleanup_servers = False
 {% endif %}
 
+# Always start using the labhub script to make JupyterLab work,
+# but don't redirect users to it unless jupyterlab_default is set.
+c.Spawner.cmd = u'/usr/local/bin/start-jupyter-labhub.sh'
+{% if jupyterlab_default %}
+c.Spawner.default_url = '/lab'
+{% endif %}
+
 c.JupyterHub.load_groups = {
 {% if use_nbgrader -%}
 {%- for course in nbgrader_courses -%}

@@ -1,0 +1,15 @@
+---
+# Install JupyterLab and its extensions
+
+- name: conda install jupyterlab
+  conda: name=jupyterlab state=present
+  become: true
+
+- name: conda install npmjs for jupyterlab
+  conda: name=nodejs state=present
+  become: true
+
+- name: install jupyterlab extensions
+  command: jupyter labextension install {{item}}
+  become: true
+  with_items: '{{jupyterlab_extensions}}'
