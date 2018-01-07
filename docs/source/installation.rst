@@ -48,7 +48,7 @@ Deploy with Ansible
 
 1. Run :file:`ansible-playbook` for the main deployment::
 
-    $ ansible-playbook deploy.yml
+    $ ansible-playbook -i hosts deploy.yml
 
 Verify your deployment
 ----------------------
