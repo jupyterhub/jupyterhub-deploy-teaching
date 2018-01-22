@@ -1,4 +1,6 @@
 #!/bin/bash -l
 # {{ ansible_managed }}
-env
+# set default lang env to avoid unicode issues
+export LANG=${LANG:-en_US.UTF-8}
+env | sort
 exec jupyterhub $@
