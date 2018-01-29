@@ -1,0 +1,23 @@
+---
+
+galaxy_info:
+  author: "Nick Janetakis"
+  description: "Install and Docker and optionally Docker Compose."
+  company:
+  license: "license (MIT)"
+  min_ansible_version: 2.4
+
+  platforms:
+    - name: "Ubuntu"
+      versions:
+        - "xenial"
+    - name: "Debian"
+      versions:
+        - "jessie"
+        - "stretch"
+
+  categories:
+    - "packaging"
+    - "system"
+
+dependencies: []
