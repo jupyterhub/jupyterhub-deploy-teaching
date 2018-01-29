@@ -52,9 +52,11 @@ http {
         ssl_stapling_verify on;
         resolver_timeout 5s;
 
+{% if not use_dockerspawner %}
         location ~ /user/([a-zA-Z0-9\-_%]*)/static/(.*) {
             alias '{{ notebook_static_directory.stdout }}/$2';
         }
+{% endif %}
 
 {% if nginx_public_html %}
         location ~ ^/public_html/([a-zA-Z0-9\-_%]*)(/.*)?$ {

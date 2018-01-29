@@ -1,5 +1,9 @@
 ---
 
+- name: docker image pre-pull
+  command: docker pull {{ docker_image }}
+  when: use_dockerspawner
+
 - name: load jupyterhub supervisor config
   supervisorctl: name=jupyterhub state=present
 

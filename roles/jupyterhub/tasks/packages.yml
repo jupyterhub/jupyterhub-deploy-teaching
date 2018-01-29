@@ -13,3 +13,5 @@
   with_items:
     - jupyterhub==0.8.1
     - oauthenticator==0.7.2
+    - dockerspawner==0.9.1
+    - jupyter_client==5.2.2

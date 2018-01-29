@@ -2,5 +2,8 @@
 
 - include_tasks: conda.yml
 - include_tasks: jupyter.yml
+  when: not use_dockerspawner
 - include_tasks: jupyterlab.yml
+  when: not use_dockerspawner
 - include_tasks: python3.yml
+  when: not use_dockerspawner

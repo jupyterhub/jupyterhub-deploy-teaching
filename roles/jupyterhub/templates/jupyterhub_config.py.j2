@@ -12,9 +12,22 @@ c.JupyterHub.cleanup_proxy = False
 c.JupyterHub.cleanup_servers = False
 {% endif %}
 
+{% if use_dockerspawner %}
+# spawn with Docker
+c.JupyterHub.spawner_class = '{{ docker_spawner_class }}'
+
+# The docker instances need access to the Hub, so the default loopback port doesn't work:
+from jupyter_client.localinterfaces import public_ips
+c.JupyterHub.hub_ip = public_ips()[0]
+{% endif %}
+
+
 # Always start using the labhub script to make JupyterLab work,
 # but don't redirect users to it unless jupyterlab_default is set.
+{% if not use_dockerspawner %}
 c.Spawner.cmd = u'/usr/local/bin/start-jupyter-labhub.sh'
+{% endif %}
+
 {% if jupyterlab_default %}
 c.Spawner.default_url = '/lab'
 {% endif %}
