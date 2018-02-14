@@ -1,0 +1,156 @@
+---
+
+# An example `hostname` file
+#
+# Edit this file to customize settings for a particular host.
+# Save as FQDN of the hostname without the `.example` suffix,
+# such as `jupyterhub.myuniversity.edu`.
+
+# ------------------------------------------------------------------------------
+# Required settings
+# ------------------------------------------------------------------------------
+
+# The base directory of user accounts.
+home_dir: /home
+
+# Users with administrative privileges.
+jupyterhub_admin_users:
+  - instructor1
+  - instructor2
+
+# Whitelist of jupyterhub users.
+jupyterhub_users:
+  - instructor1
+  - instructor2
+  - grader1
+  - grader2
+  - student1
+  - student2
+
+# A list of jupyterhub groups to create, each with a list of members.
+jupyterhub_groups:
+  - {
+      name: group1,
+      members: ["instructor1", "grader1"]
+    }
+  - {
+      name: group2,
+      members: ["instructor2", "grader2"]
+    }
+
+# Whether to redirect users to JuptyerLab (/lab) by default
+jupyterlab_default: true
+
+# R kernel installation, set to true to enable.
+install_r_kernel: false
+
+# bash kernel installation, set to true to enable
+install_bash_kernel: true
+
+# Cleanup single user servers and the proxy on jupyterhub shutdown. Setting
+# this to false, will allow jupyterhub to be restarted while leaving the proxy
+# and single user servers running.
+cleanup_on_shutdown: true
+
+# ------------------------------------------------------------------------------
+# Docker
+# ------------------------------------------------------------------------------
+
+# TODO: Describe the usage of dockerspawner
+
+# Set to `true` to enable
+use_dockerspawner: true
+docker_image: jupyterhub/singleuser:0.8
+docker_users: ['ubuntu']
+docker_spawner_class: dockerspawner.SystemUserSpawner
+
+# ------------------------------------------------------------------------------
+# Optional settings
+# ------------------------------------------------------------------------------
+
+# The following sections are for optional features that can be enabled.
+
+# ------------------------------------------------------------------------------
+# OAuth
+# ------------------------------------------------------------------------------
+
+# The default authentication will use PAM, which is the standard UNIX password
+# standard. In the default configuration UNIX usernames and passwords will be
+# used for JupyterHub. Enabling OAuth through an OAuth provider (such as GitHub)
+# will enable users to log in using their username and passwords from the OAuth
+# provider. In this case, new users can be added using the JupyterHub Admin
+# page, and the users' home directories will be automatically created.
+
+# Set to `true` to enable.
+use_oauth: false
+
+# The OAuth callback URL.
+oauth_callback_url: https://mydomain.org/hub/oauth_callback
+
+# The OAuth client ID.
+oauth_client_id: ''
+
+# The OAuth client secret.
+oauth_client_secret: ''
+
+# ------------------------------------------------------------------------------
+# nbgrader
+# ------------------------------------------------------------------------------
+
+# nbgrader is a system for assigning, collecting and grading notebook based
+# homework assignments. For more details see:
+# http://nbgrader.readthedocs.io/en/stable/
+
+# Set to `true` to enable.
+use_nbgrader: false
+
+# ------------------------------------------------------------------------------
+# cull_idle_servers
+# ------------------------------------------------------------------------------
+
+# Set to `true` to enable.
+use_cull_idle_servers: false
+
+# The interval (in seconds) for checking for idle servers to cull.
+cull_every: 600
+
+# The idle timeout (in seconds).
+cull_timeout: 3600
+
+# ------------------------------------------------------------------------------
+# Misc optional settings
+# ------------------------------------------------------------------------------
+
+# List of the GitHub usernames who will receive root access via ssh. Public
+# GitHub SSH keys will be installed to allow the user to ssh into the server as
+# root.
+github_usernames: ['instructor1', 'grader1']
+
+# To mount local file systems populate this list. (Optional) This adds the
+# entries to /etc/fstab, creates the mount points, and mounts them. Note: Disks
+# must be partitioned and formatted.
+local_mounts: []
+#   - name: /mountpoint1
+#     src: /dev/sdb1
+#     fstype: ext3
+#   - name: /mountpoint2
+#     src: /dev/sdc1
+#     fstype: ext3
+
+# SSL using letsencrypt (optional - use letsencrypt default: false) If using
+# letsencrypt to generate SSL key/cert, set `use_letsencrypt` to `true`
+# Otherwise if not using letsencrypt for SSL, you MUST put your key and cert
+# into the security directory as `security/ssl.crt` and `security/ssl.key`.
+use_letsencrypt: false
+letsencrypt_email: ''
+
+# Should users have `/public_html/username` directories. Set this to `true` to
+# enable.
+nginx_public_html: false
+
+# Set Google Analytics Tracking ID (Optional).
+ga_tracking_id: ''
+
+# Set NewRelic license key (Optional).
+newrelic_license_key: ''
+
