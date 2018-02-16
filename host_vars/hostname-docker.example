@@ -60,9 +60,19 @@ cleanup_on_shutdown: true
 
 # Set to `true` to enable
 use_dockerspawner: true
+
+# The docker image to use
 docker_image: jupyterhub/singleuser:0.8
+
+# Add any additional docker admin users to this list
 docker_users: ['ubuntu']
-docker_spawner_class: dockerspawner.SystemUserSpawner
+
+# Specify the dockerspawner class to use
+# Valid options: [dockerspawner.DockerSpawner, dockerspawner.SystemUserSpawner]
+docker_spawner_class: dockerspawner.DockerSpawner
+
+# Memory Limit
+mem_limit: 500M
 
 # ------------------------------------------------------------------------------
 # Optional settings

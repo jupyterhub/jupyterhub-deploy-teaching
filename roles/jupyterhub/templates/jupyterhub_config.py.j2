@@ -15,6 +15,7 @@ c.JupyterHub.cleanup_servers = False
 {% if use_dockerspawner %}
 # spawn with Docker
 c.JupyterHub.spawner_class = '{{ docker_spawner_class }}'
+c.Spawner.mem_limit = '{{ mem_limit }}'
 
 # The docker instances need access to the Hub, so the default loopback port doesn't work:
 from jupyter_client.localinterfaces import public_ips
