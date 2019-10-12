@@ -14,7 +14,7 @@ for each course you want to start formgrade for. Each course should have a
 unique `nbgrader_course_id` and `nbgrader_port`.
 
 Second, make sure that each main instructor (the `nbgrader_owner` for each
-course) has logged into JuptyerHub at least once. This ensures that their
+course) has logged into JupyterHub at least once. This ensures that their
 home directory has been created. The home directory of the main instructor
 is used for the main nbgrader course files. It is assumed that the main
 instructor will be running the nbgrader command line programs.
