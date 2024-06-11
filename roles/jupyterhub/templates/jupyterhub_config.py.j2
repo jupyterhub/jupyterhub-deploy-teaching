@@ -17,6 +17,8 @@ c.JupyterHub.cleanup_servers = False
 c.Spawner.cmd = u'/usr/local/bin/start-jupyter-labhub.sh'
 {% if jupyterlab_default %}
 c.Spawner.default_url = '/lab'
+{% else %}
+c.Spawner.default_url = '/tree'
 {% endif %}
 
 # A list of jupyterhub groups to create.

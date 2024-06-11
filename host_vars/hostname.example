@@ -90,7 +90,7 @@ pip_packages:
   - plotly
   - tensorflow
   - vdom
-  
+
 jupyterlab_extensions:
   - "@jupyterlab/hub-extension"
   - "@jupyterlab/geojson-extension"
@@ -147,7 +147,7 @@ cran_packages:
   - RSQLite
   - lattice
   - nlme
-  - RCurl 
+  - RCurl
   - RHTMLForms
   - RJSONIO
   - RSelenium
