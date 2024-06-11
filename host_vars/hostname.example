@@ -38,7 +38,7 @@ jupyterhub_groups:
       members: ["instructor2", "grader2"]
     }
 
-# Whether to redirect users to JuptyerLab (/lab) by default
+# Whether to redirect users to JupyterLab (/lab) by default
 jupyterlab_default: true
 
 # R kernel installation, set to true to enable.
